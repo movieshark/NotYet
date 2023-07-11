@@ -155,7 +155,7 @@ def login(
     # NOTE: cookie is required for future auth requests
     _session.cookies.set(
         "iPlanetDirectoryPro", token_id, domain=static.get_oauth_domain()
-    )  # TODO: don't hardcode this
+    )
     # requests grant code
     response = _session.get(
         static.get_authorize_ep(), params=auth_params, headers=headers
