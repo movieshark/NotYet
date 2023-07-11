@@ -1,0 +1,596 @@
+# Kodi Media Center language file
+# Addon Name: NotYet
+# Addon id: plugin.video.notyet
+# Addon Provider: Urban Lamp
+msgid ""
+msgstr ""
+"Project-Id-Version: plugin.video.notyet\n"
+"Report-Msgid-Bugs-To: https://github.com/movieshark/notyet\n"
+"POT-Creation-Date: 2023-07-04 16:15+0000\n"
+"PO-Revision-Date: 2023-07-11 14:11+0200\n"
+"Last-Translator: Urban Lamp\n"
+"Language-Team: Hungarian\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.3.2\n"
+
+msgctxt "#30001"
+msgid "General"
+msgstr "Általános"
+
+msgctxt "#30002"
+msgid "Advanced"
+msgstr "Haladó"
+
+msgctxt "#30003"
+msgid "Account"
+msgstr "Fiók"
+
+msgctxt "#30004"
+msgid "Request details"
+msgstr "Hálózati kérések adatai"
+
+msgctxt "#30005"
+msgid "Read-only data"
+msgstr "Csak olvasható adatok"
+
+msgctxt "#30006"
+msgid "Username"
+msgstr "Felhasználónév"
+
+msgctxt "#30007"
+msgid "Password"
+msgstr "Jelszó"
+
+msgctxt "#30008"
+msgid "User Agent"
+msgstr "User Agent"
+
+msgctxt "#30009"
+msgid "App version"
+msgstr "App verzió"
+
+msgctxt "#30010"
+msgid "Display tokens?"
+msgstr "Tokenek megjelenítése?"
+
+msgctxt "#30011"
+msgid "Device's unique ID"
+msgstr "Eszköz egyedi azonosítója"
+
+msgctxt "#30012"
+msgid "OAuth Access Token"
+msgstr "OAuth hozzáférési token"
+
+msgctxt "#30013"
+msgid "OAuth Refresh Token"
+msgstr "OAuth frissítő token"
+
+msgctxt "#30014"
+msgid "OAuth Access Token Expiry"
+msgstr "OAuth hozzáférési token lejárata"
+
+msgctxt "#30015"
+msgid "KS Token"
+msgstr "KS token"
+
+msgctxt "#30016"
+msgid "KS Refresh Token"
+msgstr "KS frissítő token"
+
+msgctxt "#30017"
+msgid "KS Token Expiry"
+msgstr "KS token lejárata"
+
+msgctxt "#30018"
+msgid "Yeti TV username"
+msgstr "Yeti TV felhasználónév"
+
+msgctxt "#30019"
+msgid "Yeti TV password"
+msgstr "Yeti TV jelszó"
+
+msgctxt "#30020"
+msgid "Leave blank to let the addon generate a random one"
+msgstr "Hagyd üresen, hogy az addon generáljon egy véletlenszerűt"
+
+msgctxt "#30021"
+msgid "Library"
+msgstr "Könyvtár"
+
+msgctxt "#30022"
+msgid "Sort list items by ABC order"
+msgstr "Listaelemek rendezése ABC sorrendben"
+
+msgctxt "#30023"
+msgid "List all channels (on) / subscribed only (off - query doesn't exist in official app!)"
+msgstr "Összes csatorna listázása (be) / csak előfizetett (ki - a hivatalos appban nincs ilyen lekérdezés!)"
+
+msgctxt "#30024"
+msgid "Hide adult content"
+msgstr "Felnőtt tartalom elrejtése"
+
+msgctxt "#30025"
+msgid "Device nick (official app sets this empty)"
+msgstr "Eszköz beceneve (a hivatalos app üresen hagyja)"
+
+msgctxt "#30026"
+msgid "Update"
+msgstr "Frissítés"
+
+msgctxt "#30027"
+msgid "Requesting OAuth access token..."
+msgstr "OAuth hozzáférési token lekérése..."
+
+msgctxt "#30028"
+msgid "Refreshing KS token..."
+msgstr "KS token frissítése..."
+
+msgctxt "#30029"
+msgid "Anonym login..."
+msgstr "Anonim bejelentkezés..."
+
+msgctxt "#30030"
+msgid "Requesting KS token..."
+msgstr "KS token lekérése..."
+
+msgctxt "#30031"
+msgid "Registering device..."
+msgstr "Eszköz regisztrálása..."
+
+msgctxt "#30032"
+msgid ""
+"We got back another device ID than our own!\n"
+"Try to delete the device ID!"
+msgstr ""
+"Más eszközazonosítót kaptunk, mint a sajátunk!\n"
+"Próbáld törölni az eszközazonosítót!"
+
+msgctxt "#30033"
+msgid "Successful login!"
+msgstr "Sikeres bejelentkezés!"
+
+msgctxt "#30034"
+msgid "Channels"
+msgstr "Csatornák"
+
+msgctxt "#30035"
+msgid "Delete device ID"
+msgstr "Eszközazonosító törlése"
+
+msgctxt "#30036"
+msgid "Deletes the cached login data such as tokens and generates a new device ID."
+msgstr "Törli a gyorsítótárban tárolt bejelentkezési adatokat, mint például a tokeneket, és létrehoz egy új eszközazonosítót."
+
+msgctxt "#30037"
+msgid "Reset cached login data"
+msgstr "Gyorsítótárazott belépési adatok törlése"
+
+msgctxt "#30038"
+msgid "Resets the cached login data such as tokens. Doesn't touch the device ID or the entered username, password and the addon settings."
+msgstr "Alaphelyzetbe állítja a gyorsítótárazott bejelentkezési adatokat, mint például a tokeneket. Nem törli az eszközazonosítót, a megadott felhasználónevet, jelszót és a kiegészítő egyéb beállításait."
+
+msgctxt "#30039"
+msgid "Settings"
+msgstr "Beállítások"
+
+msgctxt "#30040"
+msgid "The addon's settings."
+msgstr "A kiegészítő beállításai."
+
+msgctxt "#30041"
+msgid "You don't have permission to view this content."
+msgstr "Nincs jogosultságod a tartalom megtekintéséhez."
+
+msgctxt "#30042"
+msgid "Not playable content."
+msgstr "Nem lejátszható tartalom."
+
+msgctxt "#30043"
+msgid "Content is DRM protected, but no Widevine license URL found in the API response."
+msgstr "A tartalom DRM-védelem alatt áll, de nincs Widevine licenc URL az API válaszban."
+
+msgctxt "#30044"
+msgid "No URL to the media was found in the API response."
+msgstr "Nem található média URL az API válaszban."
+
+msgctxt "#30045"
+msgid "Widevine CDM not found. Playback of DRM protected content won't be possible."
+msgstr "Nincs telepítve Widevine CDM. DRM-védett tartalmak lejátszása nem lehetséges."
+
+msgctxt "#30046"
+msgid "First login in settings!"
+msgstr "Először jelentkezz be a beállításokban!"
+
+msgctxt "#30047"
+msgid "Recordings"
+msgstr "Felvételek"
+
+msgctxt "#30048"
+msgid "Delete recording"
+msgstr "Felvétel törlése"
+
+msgctxt "#30049"
+msgid ""
+"Are you sure you want to delete this recording?\n"
+"[B]There is no way to restore it![/B]"
+msgstr ""
+"Biztosan törölni szeretnéd ezt a felvételt?\n"
+"[B]Nincs mód a visszaállítására![/B]"
+
+msgctxt "#30050"
+msgid "Deletion successful!"
+msgstr "Törlés sikeres!"
+
+msgctxt "#30051"
+msgid "Unknown API response: {response}"
+msgstr "Ismeretlen API válasz: {response}"
+
+msgctxt "#30052"
+msgid "Recording was started at"
+msgstr "Felvétel kezdete"
+
+msgctxt "#30053"
+msgid "Recording was stopped at"
+msgstr "Felvétel vége"
+
+msgctxt "#30054"
+msgid "Recording can be watched until"
+msgstr "Felvétel megtekinthető"
+
+msgctxt "#30055"
+msgid "Playback"
+msgstr "Lejátszás"
+
+msgctxt "#30056"
+msgid "Prefer hungarian audio when available"
+msgstr "Magyar hangra váltás, ha elérhető"
+
+msgctxt "#30057"
+msgid "Device list"
+msgstr "Eszközök listája"
+
+msgctxt "#30058"
+msgid "Device activated at"
+msgstr "Eszköz aktiválva"
+
+msgctxt "#30059"
+msgid "Device last used at"
+msgstr "Eszköz utoljára használva"
+
+msgctxt "#30060"
+msgid "Household ID"
+msgstr "Háztartás azonosító"
+
+msgctxt "#30061"
+msgid "State"
+msgstr "Állapot"
+
+msgctxt "#30062"
+msgid "Delete device"
+msgstr "Eszköz törlése"
+
+msgctxt "#30063"
+msgid ""
+"Are you sure you want to delete this device?\n"
+"[B]There is no way to restore it![/B]"
+msgstr ""
+"Biztosan törölni szeretnéd ezt az eszközt?\n"
+"[B]Nincs mód a visszaállítására![/B]"
+
+msgctxt "#30064"
+msgid "[B]This device[/B]"
+msgstr "[B]Ez az eszköz[/B]"
+
+msgctxt "#30065"
+msgid "Movies"
+msgstr "Filmek"
+
+msgctxt "#30066"
+msgid "Next page"
+msgstr "Következő oldal"
+
+msgctxt "#30067"
+msgid "Documentaries"
+msgstr "Dokumentumfilmek"
+
+msgctxt "#30068"
+msgid "Series"
+msgstr "Sorozatok"
+
+msgctxt "#30069"
+msgid "Starts at"
+msgstr "Kezdés"
+
+msgctxt "#30070"
+msgid "Household ID"
+msgstr "Háztartás azonosító"
+
+msgctxt "#30071"
+msgid "User ID"
+msgstr "Felhasználó azonosító"
+
+msgctxt "#30072"
+msgid "Obtaining household ID & user ID..."
+msgstr "Háztartás azonosító és felhasználó azonosító lekérése..."
+
+msgctxt "#30073"
+msgid "Playing"
+msgstr "Lejátszás aktív"
+
+msgctxt "#30074"
+msgid "Type"
+msgstr "Típus"
+
+msgctxt "#30075"
+msgid ""
+"Issue with the data extraction.\n"
+"Won't report playback status to the server."
+msgstr ""
+"Probléma a lejátszás adatainak kinyerésével.\n"
+"Nem jelentem a lejátszás állapotát a szervernek."
+
+msgctxt "#30076"
+msgid "You've reached the maximum concurrent playback limit."
+msgstr "Elérted a maximális egyidejű lejátszási korlátot."
+
+msgctxt "#30077"
+msgid "Export"
+msgstr "Exportálás"
+
+msgctxt "#30078"
+msgid "Channel list path"
+msgstr "Csatornalista útvonala"
+
+msgctxt "#30079"
+msgid "Channel list name"
+msgstr "Csatornalista neve"
+
+msgctxt "#30080"
+msgid "Export channel list"
+msgstr "Csatornalista exportálása"
+
+msgctxt "#30081"
+msgid ""
+"Couldn't export the channel list.\n"
+"Invalid path or name?"
+msgstr ""
+"Nem sikerült exportálni a csatornalistát.\n"
+"Érvénytelen útvonal vagy név?"
+
+msgctxt "#30082"
+msgid "Login first!"
+msgstr "Először jelentkezz be!"
+
+msgctxt "#30083"
+msgid "Successfully exported the channel list!"
+msgstr "Sikeres csatornaexportálás!"
+
+msgctxt "#30084"
+msgid "EPG"
+msgstr ""
+
+msgctxt "#30085"
+msgid "EPG file name"
+msgstr "EPG fájl neve"
+
+msgctxt "#30086"
+msgid "Request EPG from (days)"
+msgstr "EPG lekérése ettől a naptól"
+
+msgctxt "#30087"
+msgid "Request EPG to (days)"
+msgstr "EPG lekérése eddig a napig"
+
+msgctxt "#30088"
+msgid "EPG update frequency"
+msgstr "EPG frissítési gyakorisága"
+
+msgctxt "#30089"
+msgid "3 hours"
+msgstr "3 óra"
+
+msgctxt "#30090"
+msgid "6 hours"
+msgstr "6 óra"
+
+msgctxt "#30091"
+msgid "12 hours"
+msgstr "12 óra"
+
+msgctxt "#30092"
+msgid "24 hours"
+msgstr "24 óra"
+
+msgctxt "#30093"
+msgid "48 hours"
+msgstr "48 óra"
+
+msgctxt "#30094"
+msgid "72 hours"
+msgstr "72 óra"
+
+msgctxt "#30095"
+msgid "Export EPG"
+msgstr "EPG exportálása"
+
+msgctxt "#30096"
+msgid "EPG export successful!"
+msgstr "EPG exportálás sikeres!"
+
+msgctxt "#30097"
+msgid "Last EPG update"
+msgstr "Utolsó EPG frissítés"
+
+msgctxt "#30098"
+msgid "Auto update EPG"
+msgstr "EPG automatikus frissítése"
+
+msgctxt "#30099"
+msgid "EPG update interval is not set."
+msgstr "Nem indult el az EPG frissítés, mert nincs beállítva az időintervallum."
+
+msgctxt "#30100"
+msgid "EPG update"
+msgstr "EPG frissítés"
+
+msgctxt "#30101"
+msgid "Player reporting (on by default, disable only for debugging)"
+msgstr "Lejátszás jelentés (alapból: be, csak hibakereséshez kapcsold ki)"
+
+msgctxt "#30102"
+msgid "Give up after (tries)"
+msgstr "Próbálkozások száma"
+
+msgctxt "#30103"
+msgid "Path"
+msgstr "Elérési útvonal"
+
+msgctxt "#30104"
+msgid "App version with build (ie. 1.23.0-PC)"
+msgstr "App verzió és build (pl. 1.23.0-PC)"
+
+msgctxt "#30105"
+msgid "Platform (ie. other)"
+msgstr "Platform (pl. other)"
+
+msgctxt "#30106"
+msgid "Device Brand (ie. 22)"
+msgstr "Eszköz márkája (pl. 22)"
+
+msgctxt "#30107"
+msgid "Device Family (ie. 5)"
+msgstr "Eszköz termékcsaládja (pl. 5)"
+
+msgctxt "#30108"
+msgid "Firmware (ie. n/a)"
+msgstr "Firmware (pl. n/a)"
+
+msgctxt "#30109"
+msgid "Partner ID (ie. 3204)"
+msgstr "Partner azonosító (pl. 3204)"
+
+msgctxt "#30110"
+msgid "TV PIL version (ie. 1.14.0)"
+msgstr "TV PIL verzió (pl. 1.14.0)"
+
+msgctxt "#30111"
+msgid "Special User-Agent (ie. JSClient/2.24.2)"
+msgstr "Speciális User-Agent (pl. JSClient/2.24.2)"
+
+msgctxt "#30112"
+msgid "Realm (ie. sc-acc-prod)"
+msgstr "Realm (pl. sc-acc-prod)"
+
+msgctxt "#30113"
+msgid "API version (ie. 5.4.0)"
+msgstr "API verzió (pl. 5.4.0)"
+
+msgctxt "#30114"
+msgid "OTT Username (ie. 11111)"
+msgstr "OTT felhasználónév (pl. 11111)"
+
+msgctxt "#30115"
+msgid "OTT Password (ie. 11111)"
+msgstr "OTT jelszó (pl. 11111)"
+
+msgctxt "#30116"
+msgid "Channel type (ie. 613)"
+msgstr "Csatorna típusa (pl. 613)"
+
+msgctxt "#30117"
+msgid "DRM API version (ie. 7.8.1)"
+msgstr "DRM API verzió (pl. 7.8.1)"
+
+msgctxt "#30118"
+msgid "DRM Client Tag (ie. html5:v7.56)"
+msgstr "DRM kliens címke (pl. html5:v7.56)"
+
+msgctxt "#30119"
+msgid "Movies ID (ie. 357915)"
+msgstr "Filmek azonosítója (pl. 357915)"
+
+msgctxt "#30120"
+msgid "Don't touch settings here unless instructed otherwise!"
+msgstr "Ne módosítsd ezeket a beállításokat, hacsak nem kaptál erre utasítást!"
+
+msgctxt "#30121"
+msgid "The completion of the add-on was made possible by paying the fee of the highest subscription and weeks of research work. Therefore, please [B]read the following carefully[/B]! If something is unclear, this text can be accessed at any time from the 'About' section in the add-on's main menu. Also, feel free to ask questions on the forum. ;)\n"
+"\n"
+"1. By logging into the add-on, you automatically accept the Terms and Conditions of the underlying platform and agree to abide by them. This add-on was created independently of the mentioned platform for the purpose of studying it. I do not recommend its use to anyone, and I am not taking any responsibility for any potential damage!\n"
+"2. The add-on requires the latest Widevine CDM and inputstream.adaptive add-ons to function properly, as well as a device with Widevine L3 certification at the time of release. The add-on will make every effort to verify and install these components if necessary. However, resolving any resulting errors (such as playback not starting) is the user's responsibility.\n"
+"3. Initially, I wanted to address the service provider exactly as their own applications do, but I quickly realized that doing so would make the add-on slow and data consumer. Therefore, most requests made from the add-on are optimized for Kodi and based on educated guesses. As a result, certain features, such as search or displaying the current program list under the channels menu, are not implemented. If optimal solutions are found for these, they will also be developed.\n"
+"4. The add-on relies on the goodwill of the user. Therefore, it may not necessarily provide feedback in case of intentionally providing incorrect data if something goes wrong. The reasons for this are twofold: firstly, it is not possible to prepare for all possibilities as the platform is closed; secondly, handling these cases would significantly slow down the user experience. I kindly ask everyone to provide meaningful data.\n"
+"5. The advanced settings of the add-on do not need to be modified by default, and it is not recommended to do so. Please only make changes if you have a good reason and are confident in the correctness of the modification, or if recommended by the developer. A good example of this is when a new version appears in the application but no add-on update is available with the new version number. In such cases, you can override it.\n"
+"6. Most of the add-on's settings take effect after restarting Kodi or disabling and re-enabling the add-on. I recommend doing this after every change. The only exception is the 'device name' setting, which takes effect only after deleting the device identifier and re-logging.\n"
+"7. The add-on can be used on its own, but for displaying the EPG, the iptvsimple PVR add-on can also be used. This functionality is currently in beta. If you want to use it, first log in, make sure you can play content with the add-on's built-in channel list (this step is mandatory for obtaining the token), then go to the add-on settings. Here, in the 'Export' tab, you will find all the relevant settings. First, provide the path where the channel list and EPG will be saved. Make sure the path is writable and has enough space (usually 20 MiB is enough). Then, enter the channel list name (arbitrary) and save the changes. Open the settings again and go to the 'Export' tab, then choose the 'Export Channel List' option. If this is successful, enter the EPG file name, set how many days of EPG you want to retrieve retrospectively and in advance, specify the update frequency, and the number of retry attempts in case of failed attempts. Save the settings and restart Kodi. If everything goes well, the add-on will automatically start downloading the EPG when Kodi starts (if the specified time interval has expired, automatic download is enabled, and we are logged in). The success of the process will always be indicated by a silent notification, which can take minutes. The resulting files can be imported into the IPTV Simple add-"
+"on.\n"
+"8. The add-on supports both Hungarian and English languages. If Kodi starts in English, the add-on will also be in English. I welcome translations into other languages (if you see the need).\n"
+"9. The add-on is not prepared for the scenario where you are logged out of the platform or another registered device on the platform logs you out due to reasons beyond your control. In such cases, it may encounter errors. Please make sure that your subscription is active, the official applications are working, and you have not exceeded the allowed device limit before reporting an error. It is recommended to delete cached login data, and if that doesn't solve the issue, use the option to delete the device identifier, which attempts to log in again and register the device.\n"
+"10. Recording is currently not possible with the add-on. However, there is no obstacle to viewing recordings initiated from the official app.\n"
+"\n"
+"Thank you for reading, and enjoy!"
+msgstr "A kiegészítő elkészültét a legnagyobb előfizetés díja, illetve hetek kutatással töltött munkája tette "
+"lehetővé. Ezáltal kérlek, hogy [B]az alábbiakat figyelmesen olvasd el[/B]! Ha valami nem lenne világos, a "
+"kiegészítő főmenüjében 'A kiegészítőről' menüpont alól előhozható bármikor ez a szöveg. Illetve kérdezni "
+"a fórumon ér. ;)\n"
+"\n"
+"1. A kiegészítőbe való bejelentkezéssel automatikusan elfogadod a mögöttes platform ÁSZF-jét és betartod "
+"azt. Ezen kiegészítő a nevezett platformtól függetlenül, a platform tanulmányozása céljából jött létre. "
+"Használatát senkinek nem ajánlom és az esetleges károkért felelősséget nem válalok!\n"
+"2. A kiegészítő megfelelő működéséhez a legfrissebb Widevine CDM és az inputstream.adaptive kiegészítő "
+"megléte szükséges, valamint a kiadás pillanatában egy Widevine L3 minősítésű eszköz. A kiegészítő megtesz "
+"mindent annak érdekében, hogy ennek meglétét ellenőrizze, illetve szükség esetén telepítse. De az ebből "
+"fakadó hibák (lejátszás nem indul stb) megoldása a felhasználó feladata.\n"
+"3. Eredetileg szerettem volna pontosan úgy megszólítani a szolgáltatót, ahogyan azt az ő alkalmazásaik is "
+"teszik, azonban hamar rájöttem, hogy ha ezt tenném, akkor a kiegészítő lassú lenne és rengeteg adatot "
+"használna el. Ezért a kiegészítőből végzett kérések nagyrésze Kodira optimalizált, tippelésen alapul. "
+"Éppen ezért bizonyos funkciók, mint a keresés, vagy az éppen aktuális műsorlista megjelenítése a "
+"csatornák menü alatt nincs megoldva. Ha sikerül ezekre optimális megoldást találni, akkor ezek is "
+"lefejlesztésre kerülnek.\n"
+"4. A kiegészítő bízik a felhasználó jóindulatában. Azaz szándékosan helytelen adatok megadása esetén nem "
+"feltétlen jelez vissza, ha valami félremegy. Ennek oka egyrészt, hogy minden eshetőségre nem lehet "
+"felkészülni, hiszen a platform zárt, másrészt ezek kezelése jelentősen lassítana a felhasználói élményen. "
+"Kérem, hogy értelmes adatokkal próbálkozzon mindenki.\n"
+"5. A kiegészítő haladó beállításait alap esetben nem szükséges állítani és nem is ajánlott. Kérem, hogy "
+"csak akkor módosítsd, ha jó okod van rá és magabiztos vagy a változtatás helyességében. Illetve ha a "
+"fejlesztő javasolja. Egy jó példa erre, ha az alkalmazásból megjelenik egy új verzió, de nem érkezik "
+"kiegészítő frissítés a friss verziószámmal. Ilyen esetben át lehet írni.\n"
+"6. A kiegészítő beállításainak nagy része Kodi újraindítást, vagy a kiegészítő letiltását, majd újbóli "
+"engedélyezését követően lép érvénybe. Javaslom ezt eszközölni minden változtatás után. Kivétel ez alól az "
+"'eszköz neve' beállítás, mely az eszköz azonosítójának törlését és az újbóli belépést követően lép csak "
+"érvénybe.\n"
+"7. A kiegészítő használható önmagában is, azonban az EPG megjelenítésére használható az iptvsimple PVR "
+"kiegészítő is. Ez a funkcio egyelőre béta. Amennyiben használni szeretnéd, először jelentkezz be, győződj "
+"meg arról, hogy le tudsz-e játszani a kiegészítő beépített csatornalistájával tartalmakat (ez a lépés "
+"kötelező token beszerzése miatt) majd lépj be a kiegészítő beállításaiba. Itt az 'Exportálás' fülön "
+"találod az összes ide vonatkozó beállítást. Először add meg az elérési utat, ahova a csatornalista és az "
+"EPG mentve lesz. Győződj meg róla, hogy írható az útvonal és van elég hely rajta (ált. 20 MiB elég). Ezt "
+"követően add meg a csatornalista nevét (tetszőleges), majd mentsd le a változtatásokat és nyisd meg újra "
+"a beállításokat. Menj az 'Exportálás' fülre ismét és a 'Csatornalista exportálása' opcióra.\n"
+"Ha ez sikeres, akkor add meg az EPG fájl nevét is, állítsd be, hogy hány napra visszamenőleg szeretnéd "
+"lekérni az EPG-t, illetve hány napra előre, add meg frissítés gyakoriságát, illetve a sikertelen "
+"próbálkozások esetén újrapróbálkozások számát is. Majd mentsd el a beállításokat és indítsd újra a Kodit. "
+"Ha minden jól megy, a kiegészítő a Kodi indulásával automatikusan megkezdi az EPG letöltését (amennyiben "
+"lejárt a meghatározott időintervallum és engedélyezve van az automatikus letöltés, illetve be vagyunk "
+"lépve). A folyamat sikerességéről mindig egy csendes értesítés fog tájékoztatni és percekbe is telhet. A "
+"kész fájlokat lehet importálni az IPTV Simple kiegészítőbe.\n"
+"8. A kiegészítő tud magyarul és angolul is. Ha a Kodi angol nyelven indul, akkor a kiegészítő is. Egyéb "
+"nyelvű fordításokat szívesen várok (ha látod értelmét).\n"
+"9. A kiegészítő nincs felkészítve arra az eshetőségre, ha önhibáján kívül jelentkezteti ki a platform, "
+"vagy a platformra regisztrált másik eszköz, így ebben az esetben hibára futhat. Kérem, hogy mielőtt hibát "
+"jelentenél, győződj meg arról, hogy az előfizetésed aktív, működik a hivatalos alkalmazásokban és nem "
+"lépted túl a megengedett eszköz limitet. Javasolt az gyorsítótárazott belépési adatok törlése, illetve ha "
+"ez sem oldja meg, akkor az eszközazonosító törlése opció használata, ami megkísérli az újra belépést, "
+"illetve az eszköz regisztrációját.\n"
+"10. Felvételek rögzítése egyelőre nem lehetséges a kiegészítő segítségével. Azonban a hivatalos appból "
+"indított felvételek megtekintésének semmi akadálya.\n"
+"\n"
+"Köszönöm, hogy elolvastad és jó szórakozást!"
+
+msgctxt "#30122"
+msgid "About"
+msgstr "A kiegészítőről"

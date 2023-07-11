@@ -1,0 +1,528 @@
+# Kodi Media Center language file
+# Addon Name: NotYet
+# Addon id: plugin.video.notyet
+# Addon Provider: Urban Lamp
+msgid ""
+msgstr ""
+"Project-Id-Version: plugin.video.notyet\n"
+"Report-Msgid-Bugs-To: https://github.com/movieshark/notyet\n"
+"POT-Creation-Date: 2023-07-04 16:15+0000\n"
+"PO-Revision-Date: 2023-07-04 16:40+0000\n"
+"Last-Translator: Urban Lamp\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "#30001"
+msgid "General"
+msgstr ""
+
+msgctxt "#30002"
+msgid "Advanced"
+msgstr ""
+
+msgctxt "#30003"
+msgid "Account"
+msgstr ""
+
+msgctxt "#30004"
+msgid "Request details"
+msgstr ""
+
+msgctxt "#30005"
+msgid "Read-only data"
+msgstr ""
+
+msgctxt "#30006"
+msgid "Username"
+msgstr ""
+
+msgctxt "#30007"
+msgid "Password"
+msgstr ""
+
+msgctxt "#30008"
+msgid "User Agent"
+msgstr ""
+
+msgctxt "#30009"
+msgid "App version (ie. 1.23.0)"
+msgstr ""
+
+msgctxt "#30010"
+msgid "Display tokens?"
+msgstr ""
+
+msgctxt "#30011"
+msgid "Device's unique ID"
+msgstr ""
+
+msgctxt "#30012"
+msgid "OAuth Access Token"
+msgstr ""
+
+msgctxt "#30013"
+msgid "OAuth Refresh Token"
+msgstr ""
+
+msgctxt "#30014"
+msgid "OAuth Access Token Expiry"
+msgstr ""
+
+msgctxt "#30015"
+msgid "KS Token"
+msgstr ""
+
+msgctxt "#30016"
+msgid "KS Refresh Token"
+msgstr ""
+
+msgctxt "#30017"
+msgid "KS Token Expiry"
+msgstr ""
+
+msgctxt "#30018"
+msgid "Yeti TV username"
+msgstr ""
+
+msgctxt "#30019"
+msgid "Yeti TV password"
+msgstr ""
+
+msgctxt "#30020"
+msgid "Leave blank to let the addon generate a random one"
+msgstr ""
+
+msgctxt "#30021"
+msgid "Library"
+msgstr ""
+
+msgctxt "#30022"
+msgid "Sort list items by ABC order"
+msgstr ""
+
+msgctxt "#30023"
+msgid "List all channels (on) / subscribed only (off - query doesn't exist in official app!)"
+msgstr ""
+
+msgctxt "#30024"
+msgid "Hide adult content"
+msgstr ""
+
+msgctxt "#30025"
+msgid "Device nick (official app sets this empty)"
+msgstr ""
+
+msgctxt "#30026"
+msgid "Update"
+msgstr ""
+
+msgctxt "#30027"
+msgid "Requesting OAuth access token..."
+msgstr ""
+
+msgctxt "#30028"
+msgid "Refreshing KS token..."
+msgstr ""
+
+msgctxt "#30029"
+msgid "Anonym login..."
+msgstr ""
+
+msgctxt "#30030"
+msgid "Requesting KS token..."
+msgstr ""
+
+msgctxt "#30031"
+msgid "Registering device..."
+msgstr ""
+
+msgctxt "#30032"
+msgid "We got back another device ID than our own!\n"
+"Try to delete the device ID!"
+msgstr ""
+
+msgctxt "#30033"
+msgid "Successful login!"
+msgstr ""
+
+msgctxt "#30034"
+msgid "Channels"
+msgstr ""
+
+msgctxt "#30035"
+msgid "Delete device ID"
+msgstr ""
+
+msgctxt "#30036"
+msgid "Deletes the cached login data such as tokens"
+" and generates a new device ID."
+msgstr ""
+
+msgctxt "#30037"
+msgid "Reset cached login data"
+msgstr ""
+
+msgctxt "#30038"
+msgid "Resets the cached login data such as tokens."
+" Doesn't touch the device ID or the entered username,"
+" password and the addon settings."
+msgstr ""
+
+msgctxt "#30039"
+msgid "Settings"
+msgstr ""
+
+msgctxt "#30040"
+msgid "The addon's settings."
+msgstr ""
+
+msgctxt "#30041"
+msgid "You don't have permission to view this content."
+msgstr ""
+
+msgctxt "#30042"
+msgid "Not playable content."
+msgstr ""
+
+msgctxt "#30043"
+msgid "Content is DRM protected, but no Widevine "
+"license URL found in the API response."
+
+msgctxt "#30044"
+msgid "No URL to the media was found in the API response."
+msgstr ""
+
+msgctxt "#30045"
+msgid "Widevine CDM not found. Playback of DRM protected"
+" content won't be possible."
+msgstr ""
+
+msgctxt "#30046"
+msgid "First login in settings!"
+msgstr ""
+
+msgctxt "#30047"
+msgid "Recordings"
+msgstr ""
+
+msgctxt "#30048"
+msgid "Delete recording"
+msgstr ""
+
+msgctxt "#30049"
+msgid "Are you sure you want to delete this recording?\n"
+"[B]There is no way to restore it![/B]"
+msgstr ""
+
+msgctxt "#30050"
+msgid "Deletion successful!"
+msgstr ""
+
+msgctxt "#30051"
+msgid "Unknown API response: {response}"
+msgstr ""
+
+msgctxt "#30052"
+msgid "Recording was started at"
+msgstr ""
+
+msgctxt "#30053"
+msgid "Recording was stopped at"
+msgstr ""
+
+msgctxt "#30054"
+msgid "Recording can be watched until"
+msgstr ""
+
+msgctxt "#30055"
+msgid "Playback"
+msgstr ""
+
+msgctxt "#30056"
+msgid "Prefer hungarian audio when available"
+msgstr ""
+
+msgctxt "#30057"
+msgid "Device list"
+msgstr ""
+
+msgctxt "#30058"
+msgid "Device activated at"
+msgstr ""
+
+msgctxt "#30059"
+msgid "Device last used at"
+msgstr ""
+
+msgctxt "#30060"
+msgid "Household ID"
+msgstr ""
+
+msgctxt "#30061"
+msgid "State"
+msgstr ""
+
+msgctxt "#30062"
+msgid "Delete device"
+msgstr ""
+
+msgctxt "#30063"
+msgid "Are you sure you want to delete this device?\n"
+"[B]There is no way to restore it![/B]"
+msgstr ""
+
+msgctxt "#30064"
+msgid "[B]This device[/B]"
+msgstr ""
+
+msgctxt "#30065"
+msgid "Movies"
+msgstr ""
+
+msgctxt "#30066"
+msgid "Next page"
+msgstr ""
+
+msgctxt "#30067"
+msgid "Documentaries"
+msgstr ""
+
+msgctxt "#30068"
+msgid "Series"
+msgstr ""
+
+msgctxt "#30069"
+msgid "Starts at"
+msgstr ""
+
+msgctxt "#30070"
+msgid "Household ID"
+msgstr ""
+
+msgctxt "#30071"
+msgid "User ID"
+msgstr ""
+
+msgctxt "#30072"
+msgid "Obtaining household ID & user ID..."
+msgstr ""
+
+msgctxt "#30073"
+msgid "Playing"
+msgstr ""
+
+msgctxt "#30074"
+msgid "Type"
+msgstr ""
+
+msgctxt "#30075"
+msgid "Issue with the data extraction.\n"
+"Won't report playback status to the server."
+msgstr ""
+
+msgctxt "#30076"
+msgid "You've reached the maximum concurrent playback limit."
+msgstr ""
+
+msgctxt "#30077"
+msgid "Export"
+msgstr ""
+
+msgctxt "#30078"
+msgid "Channel list path"
+msgstr ""
+
+msgctxt "#30079"
+msgid "Channel list name"
+msgstr ""
+
+msgctxt "#30080"
+msgid "Export channel list"
+msgstr ""
+
+msgctxt "#30081"
+msgid "Couldn't export the channel list.\n"
+"Invalid path or name?"
+msgstr ""
+
+msgctxt "#30082"
+msgid "Login first!"
+msgstr ""
+
+msgctxt "#30083"
+msgid "Successfully exported the channel list!"
+msgstr ""
+
+msgctxt "#30084"
+msgid "EPG"
+msgstr ""
+
+msgctxt "#30085"
+msgid "EPG file name"
+msgstr ""
+
+msgctxt "#30086"
+msgid "Request EPG from (days)"
+msgstr ""
+
+msgctxt "#30087"
+msgid "Request EPG to (days)"
+msgstr ""
+
+msgctxt "#30088"
+msgid "EPG update frequency"
+msgstr ""
+
+msgctxt "#30089"
+msgid "3 hours"
+msgstr ""
+
+msgctxt "#30090"
+msgid "6 hours"
+msgstr ""
+
+msgctxt "#30091"
+msgid "12 hours"
+msgstr ""
+
+msgctxt "#30092"
+msgid "24 hours"
+msgstr ""
+
+msgctxt "#30093"
+msgid "48 hours"
+msgstr ""
+
+msgctxt "#30094"
+msgid "72 hours"
+msgstr ""
+
+msgctxt "#30095"
+msgid "Export EPG"
+msgstr ""
+
+msgctxt "#30096"
+msgid "EPG export successful!"
+msgstr ""
+
+msgctxt "#30097"
+msgid "Last EPG update"
+msgstr ""
+
+msgctxt "#30098"
+msgid "Auto update EPG"
+msgstr ""
+
+msgctxt "#30099"
+msgid "EPG update interval is not set."
+msgstr ""
+
+msgctxt "#30100"
+msgid "EPG update"
+msgstr ""
+
+msgctxt "#30101"
+msgid "Player reporting (on by default, disable only for debugging)"
+msgstr ""
+
+msgctxt "#30102"
+msgid "Give up after (tries)"
+msgstr ""
+
+msgctxt "#30103"
+msgid "Path"
+msgctxt ""
+
+msgctxt "#30104"
+msgid "App version with build (ie. 1.23.0-PC)"
+msgstr ""
+
+msgctxt "#30105"
+msgid "Platform (ie. other)"
+msgstr ""
+
+msgctxt "#30106"
+msgid "Device Brand (ie. 22)"
+msgstr ""
+
+msgctxt "#30107"
+msgid "Device Family (ie. 5)"
+msgstr ""
+
+msgctxt "#30108"
+msgid "Firmware (ie. n/a)"
+msgstr ""
+
+msgctxt "#30109"
+msgid "Partner ID (ie. 3204)"
+msgstr ""
+
+msgctxt "#30110"
+msgid "TV PIL version (ie. 1.14.0)"
+msgstr ""
+
+msgctxt "#30111"
+msgid "Special User-Agent (ie. JSClient/2.24.2)"
+msgstr ""
+
+msgctxt "#30112"
+msgid "Realm (ie. sc-acc-prod)"
+msgstr ""
+
+msgctxt "#30113"
+msgid "API version (ie. 5.4.0)"
+msgstr ""
+
+msgctxt "#30114"
+msgid "OTT Username (ie. 11111)"
+msgstr ""
+
+msgctxt "#30115"
+msgid "OTT Password (ie. 11111)"
+msgstr ""
+
+msgctxt "#30116"
+msgid "Channel type (ie. 613)"
+msgstr ""
+
+msgctxt "#30117"
+msgid "DRM API version (ie. 7.8.1)"
+msgstr ""
+
+msgctxt "#30118"
+msgid "DRM Client Tag (ie. html5:v7.56)"
+msgstr ""
+
+msgctxt "#30119"
+msgid "Movies ID (ie. 357915)"
+msgstr ""
+
+msgctxt "#30120"
+msgid "Don't touch settings here unless instructed otherwise!"
+msgstr ""
+
+msgctxt "#30121"
+msgid "The completion of the add-on was made possible by paying the fee of the highest subscription and weeks of research work. Therefore, please [B]read the following carefully[/B]! If something is unclear, this text can be accessed at any time from the 'About' section in the add-on's main menu. Also, feel free to ask questions on the forum. ;)\n"
+"\n"
+"1. By logging into the add-on, you automatically accept the Terms and Conditions of the underlying platform and agree to abide by them. This add-on was created independently of the mentioned platform for the purpose of studying it. I do not recommend its use to anyone, and I am not taking any responsibility for any potential damage!\n"
+"2. The add-on requires the latest Widevine CDM and inputstream.adaptive add-ons to function properly, as well as a device with Widevine L3 certification at the time of release. The add-on will make every effort to verify and install these components if necessary. However, resolving any resulting errors (such as playback not starting) is the user's responsibility.\n"
+"3. Initially, I wanted to address the service provider exactly as their own applications do, but I quickly realized that doing so would make the add-on slow and data consumer. Therefore, most requests made from the add-on are optimized for Kodi and based on educated guesses. As a result, certain features, such as search or displaying the current program list under the channels menu, are not implemented. If optimal solutions are found for these, they will also be developed.\n"
+"4. The add-on relies on the goodwill of the user. Therefore, it may not necessarily provide feedback in case of intentionally providing incorrect data if something goes wrong. The reasons for this are twofold: firstly, it is not possible to prepare for all possibilities as the platform is closed; secondly, handling these cases would significantly slow down the user experience. I kindly ask everyone to provide meaningful data.\n"
+"5. The advanced settings of the add-on do not need to be modified by default, and it is not recommended to do so. Please only make changes if you have a good reason and are confident in the correctness of the modification, or if recommended by the developer. A good example of this is when a new version appears in the application but no add-on update is available with the new version number. In such cases, you can override it.\n"
+"6. Most of the add-on's settings take effect after restarting Kodi or disabling and re-enabling the add-on. I recommend doing this after every change. The only exception is the 'device name' setting, which takes effect only after deleting the device identifier and re-logging.\n"
+"7. The add-on can be used on its own, but for displaying the EPG, the iptvsimple PVR add-on can also be used. This functionality is currently in beta. If you want to use it, first log in, make sure you can play content with the add-on's built-in channel list (this step is mandatory for obtaining the token), then go to the add-on settings. Here, in the 'Export' tab, you will find all the relevant settings. First, provide the path where the channel list and EPG will be saved. Make sure the path is writable and has enough space (usually 20 MiB is enough). Then, enter the channel list name (arbitrary) and save the changes. Open the settings again and go to the 'Export' tab, then choose the 'Export Channel List' option. If this is successful, enter the EPG file name, set how many days of EPG you want to retrieve retrospectively and in advance, specify the update frequency, and the number of retry attempts in case of failed attempts. Save the settings and restart Kodi. If everything goes well, the add-on will automatically start downloading the EPG when Kodi starts (if the specified time interval has expired, automatic download is enabled, and we are logged in). The success of the process will always be indicated by a silent notification, which can take minutes. The resulting files can be imported into the IPTV Simple add-"
+"on.\n"
+"8. The add-on supports both Hungarian and English languages. If Kodi starts in English, the add-on will also be in English. I welcome translations into other languages (if you see the need).\n"
+"9. The add-on is not prepared for the scenario where you are logged out of the platform or another registered device on the platform logs you out due to reasons beyond your control. In such cases, it may encounter errors. Please make sure that your subscription is active, the official applications are working, and you have not exceeded the allowed device limit before reporting an error. It is recommended to delete cached login data, and if that doesn't solve the issue, use the option to delete the device identifier, which attempts to log in again and register the device.\n"
+"10. Recording is currently not possible with the add-on. However, there is no obstacle to viewing recordings initiated from the official app.\n"
+"\n"
+"Thank you for reading, and enjoy!"
+msgstr ""
+
+msgctxt "#30122"
+msgid "About"
+msgstr ""

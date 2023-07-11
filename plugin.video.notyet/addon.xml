@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.notyet" name="NotYet" version="0.7.2" provider-name="Urban Lamp">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+        <import addon="script.module.requests" version="2.12.4"/>
+        <import addon="script.module.inputstreamhelper" version="0.3.3"/>
+        <import addon="script.module.pycryptodome" version="3.4.3"/>
+        <import addon="script.module.xmltodict" version="0.12.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.service" library="playback_mgr_service.py"/>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en">NotYet</summary>
+        <description lang="en">Unofficial Yettel TV Hungary Kodi Addon</description>
+        <disclaimer lang="en">This addon is not created or maintained by Yettel TV Hungary</disclaimer>
+        <summary lang="hu">NotYet</summary>
+        <description lang="hu">Nem hivatalos Yettel TV Hungary Kodi Addon</description>
+        <disclaimer lang="hu">Ez a kiegészítő nem a Yettel TV Hungary hivatalos kiegészítője</disclaimer>
+        <platform>all</platform>
+        <language>hu en</language>
+        <license>GPLv2</license>
+        <forum>https://prohardver.hu/tema/kodi_xbmc_kiegeszito_magyar_nyelvu_online_filmekhe/hsz_1-50.html</forum>
+        <website></website>
+        <email></email>
+        <source>https://github.com/movieshark/NotYet</source>
+        <icon></icon>
+        <fanart></fanart>
+        <banner></banner>
+        <news></news>
+        <changelog>0.7.2 - initial release</changelog>
+    </extension>
+</addon>

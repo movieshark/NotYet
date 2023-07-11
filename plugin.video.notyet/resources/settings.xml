@@ -1,0 +1,541 @@
+<?xml version="1.0" ?>
+<settings version="1">
+	<section id="plugin.video.notyet">
+        <category id="general" label="30001">
+            <group id="1" label="30003">
+                <setting id="username" label="30006" type="string">
+                    <level>0</level>
+                    <default></default>
+                    <constraints>
+                        <allowempty>true</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+		                <heading>30018</heading>
+                    </control>
+                </setting>
+                <setting id="password" label="30007" type="string">
+                    <level>0</level>
+                    <default></default>
+                    <constraints>
+                        <allowempty>true</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30019</heading>
+                        <hidden>true</hidden>
+                    </control>
+                </setting>
+                <setting id="devicenick" label="30025" type="string">
+                    <level>0</level>
+                    <default></default>
+                    <constraints>
+                        <allowempty>true</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30025</heading>
+                    </control>
+                </setting>
+            </group>
+            <group id="2" label="30021">
+                <setting id="sortabc" label="30022" type="boolean">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="listofficial" label="30023" type="boolean">
+                    <level>0</level>
+                    <default>false</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="hideadult" label="30024" type="boolean">
+                    <level>0</level>
+                    <default>false</default>
+                    <control type="toggle"/>
+                </setting>
+            </group>
+            <group id="5" label="30055">
+                <setting id="preferhundub" label="30056" type="boolean">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+            </group>
+        </category>
+        <category id="export" label="30077">
+            <group id="8" label="30103">
+                <setting id="channelexportpath" type="path" label="30078">
+                    <level>0</level>
+                    <default></default>
+                    <constraints>
+                        <allowempty>true</allowempty>
+                    </constraints>
+                    <control type="button" format="path">
+                        <heading>30078</heading>
+                    </control>
+                </setting>
+            </group>
+            <group id="6" label="30034">
+                <setting id="channelexportname" label="30079" type="string">
+                    <level>0</level>
+                    <default>channels.m3u</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30079</heading>
+                    </control>
+                </setting>
+                <setting id="exportchannellist" type="action" label="30080">
+                    <level>0</level>
+                    <data>RunPlugin(plugin://$ID/?action=export_chanlist)</data>
+                    <dependencies>
+                        <dependency type="enable">
+                            <and>
+                                <condition operator="!is" setting="channelexportpath"></condition>
+                                <condition operator="!is" setting="channelexportname"></condition>
+                                <condition operator="!is" setting="kstoken"></condition>
+                            </and>
+                        </dependency>
+                    </dependencies>
+                    <control type="button" format="action">
+                        <close>false</close>
+                    </control>
+                </setting>
+            </group>
+            <group id="7" label="30084">
+                <setting id="autoupdateepg" label="30098" type="boolean">
+                    <level>0</level>
+                    <default>false</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="epgexportname" label="30085" type="string">
+                    <level>0</level>
+                    <default>epg.xml</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30086</heading>
+                    </control>
+                </setting>
+                <setting id="epgfrom" label="30086" type="integer">
+                    <level>0</level>
+                    <default>1</default>
+                    <constraints>
+                        <minimum>1</minimum>
+                        <step>1</step>
+                        <maximum>7</maximum>
+                    </constraints>
+                    <control type="slider" format="integer">
+                        <heading>30086</heading>
+                    </control>
+                </setting>
+                <setting id="epgto" label="30087" type="integer">
+                    <level>0</level>
+                    <default>7</default>
+                    <constraints>
+                        <minimum>1</minimum>
+                        <step>1</step>
+                        <maximum>7</maximum>
+                    </constraints>
+                    <control type="slider" format="integer">
+                        <heading>30087</heading>
+                    </control>
+                </setting>
+                <!-- epg update freq: 3, 6, 12, 24, 48, 72 hours -->
+                <setting id="epgupdatefreq" type="integer" label="30088">
+                    <level>0</level>
+                    <default>2</default>
+                    <constraints>
+                        <options>
+                            <option label="30089">0</option>
+                            <option label="30090">1</option>
+                            <option label="30091">2</option>
+                            <option label="30092">3</option>
+                            <option label="30093">4</option>
+                            <option label="30094">5</option>
+                        </options>
+                    </constraints>
+                     <control type="spinner" format="string">
+                     </control>
+                </setting>
+                <setting id="epgfetchtries" type="integer" label="30102">
+                    <level>0</level>
+                    <default>3</default>
+                    <constraints>
+                        <minimum>1</minimum>
+                        <step>1</step>
+                        <maximum>10</maximum>
+                    </constraints>
+                    <control type="slider" format="integer">
+                        <heading>30102</heading>
+                    </control>
+                </setting>
+                <setting id="exportepg" type="action" label="30095">
+                    <level>0</level>
+                    <data>RunPlugin(plugin://$ID/?action=export_epg)</data>
+                    <dependencies>
+                        <dependency type="enable">
+                            <and>
+                            <condition operator="!is" setting="channelexportpath"></condition>
+                                <condition operator="!is" setting="epgexportname"></condition>
+                                <condition operator="!is" setting="epgfrom"></condition>
+                                <condition operator="!is" setting="epgto"></condition>
+                                <condition operator="!is" setting="epgupdatefreq"></condition>
+                                <condition operator="!is" setting="kstoken"></condition>
+                            </and>
+                        </dependency>
+                    </dependencies>
+                    <control type="button" format="action">
+                        <close>false</close>
+                    </control>
+                </setting>
+            </group>
+        </category>
+        <category id="advanced" label="30002">
+            <group id="3" label="30004">
+                <setting id="useragent" label="30008" type="string">
+                    <level>0</level>
+                    <hint>30020</hint>
+                    <default></default>
+                    <constraints>
+                        <allowempty>true</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30008</heading>
+                    </control>
+                </setting>
+                <!-- disabled disclaimer -->
+                <setting id="advanceddisclaimer" label="30120" type="action">
+                    <level>1</level>
+                    <data>RunPlugin(plugin://$ID/?action=dummy)</data>
+                    <enable>false</enable>
+                    <control type="button" format="action">
+                        <close>false</close>
+                    </control>
+                </setting>
+                <setting id="appversion" label="30009" type="string">
+                    <level>1</level>
+                    <default>1.23.0</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30009</heading>
+                    </control>
+                </setting>
+                <setting id="appversionwithbuild" label="30104" type="string">
+                    <level>1</level>
+                    <default>1.23.0-PC</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30104</heading>
+                    </control>
+                </setting>
+                <setting id="platform" label="30105" type="string">
+                    <level>1</level>
+                    <default>other</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30105</heading>
+                    </control>
+                </setting>
+                <setting id="devicebrand" label="30106" type="string">
+                    <level>1</level>
+                    <default>22</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30106</heading>
+                    </control>
+                </setting>
+                <setting id="devicefamily" label="30107" type="string">
+                    <level>1</level>
+                    <default>5</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30107</heading>
+                    </control>
+                </setting>
+                <setting id="firmware" label="30108" type="string">
+                    <level>1</level>
+                    <default>n/a</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30108</heading>
+                    </control>
+                </setting>
+                <setting id="partnerid" label="30109" type="string">
+                    <level>1</level>
+                    <default>3204</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30109</heading>
+                    </control>
+                </setting>
+                <setting id="tvpilversion" label="30110" type="string">
+                    <level>1</level>
+                    <default>1.14.0</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30110</heading>
+                    </control>
+                </setting>
+                <setting id="specialua" label="30111" type="string">
+                    <level>1</level>
+                    <default>JSClient/2.24.2</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30111</heading>
+                    </control>
+                </setting>
+                <setting id="realm" label="30112" type="string">
+                    <level>1</level>
+                    <default>sc-acc-prod</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30112</heading>
+                    </control>
+                </setting>
+                <setting id="apiversion" label="30113" type="string">
+                    <level>1</level>
+                    <default>5.4.0</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30113</heading>
+                    </control>
+                </setting>
+                <setting id="ottusername" label="30114" type="string">
+                    <level>1</level>
+                    <default>11111</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30114</heading>
+                    </control>
+                </setting>
+                <setting id="ottpassword" label="30115" type="string">
+                    <level>1</level>
+                    <default>11111</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30115</heading>
+                    </control>
+                </setting>
+                <setting id="channeltype" label="30116" type="string">
+                    <level>1</level>
+                    <default>613</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30116</heading>
+                    </control>
+                </setting>
+                <setting id="drmapiversion" label="30117" type="string">
+                    <level>1</level>
+                    <default>7.8.1</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30117</heading>
+                    </control>
+                </setting>
+                <setting id="drmclienttag" label="30118" type="string">
+                    <level>1</level>
+                    <default>html5:v7.56</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30118</heading>
+                    </control>
+                </setting>
+                <setting id="moviesid" label="30119" type="string">
+                    <level>1</level>
+                    <default>357915</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30119</heading>
+                    </control>
+                </setting>
+                <setting id="reportingon" label="30101" type="boolean">
+                    <level>1</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+            </group>
+            <group id="4" label="30005">
+                <setting id="showtokens" label="30010" type="boolean">
+                    <level>0</level>
+                    <default>false</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="devicekey" label="30011" type="string">
+                    <level>0</level>
+                    <enable>false</enable>
+                    <default></default>
+                    <dependencies>
+                        <dependency type="visible" setting="showtokens">true</dependency>
+                    </dependencies>
+                    <control type="edit" format="string">
+                        <heading>30011</heading>
+                    </control>
+                    <constraints>
+                        <allowempty>true</allowempty>
+                    </constraints>
+                </setting>
+                <setting id="oauthaccesstoken" label="30012" type="string">
+                    <level>0</level>
+                    <enable>false</enable>
+                    <default></default>
+                    <dependencies>
+                        <dependency type="visible" setting="showtokens">true</dependency>
+                    </dependencies>
+                    <control type="edit" format="string">
+                        <heading>30012</heading>
+                    </control>
+                    <constraints>
+                        <allowempty>true</allowempty>
+                    </constraints>
+                </setting>
+                <setting id="oauthrefreshtoken" label="30013" type="string">
+                    <level>0</level>
+                    <enable>false</enable>
+                    <default></default>
+                    <dependencies>
+                        <dependency type="visible" setting="showtokens">true</dependency>
+                    </dependencies>
+                    <control type="edit" format="string">
+                        <heading>30013</heading>
+                    </control>
+                    <constraints>
+                        <allowempty>true</allowempty>
+                    </constraints>
+                </setting>
+                <setting id="oauthexpires" label="30014" type="string">
+                    <level>0</level>
+                    <enable>false</enable>
+                    <default></default>
+                    <dependencies>
+                        <dependency type="visible" setting="showtokens">true</dependency>
+                    </dependencies>
+                    <control type="edit" format="string">
+                        <heading>30014</heading>
+                    </control>
+                    <constraints>
+                        <allowempty>true</allowempty>
+                    </constraints>
+                </setting>
+                <setting id="kstoken" label="30015" type="string">
+                    <level>0</level>
+                    <enable>false</enable>
+                    <default></default>
+                    <dependencies>
+                        <dependency type="visible" setting="showtokens">true</dependency>
+                    </dependencies>
+                    <control type="edit" format="string">
+                        <heading>30015</heading>
+                    </control>
+                    <constraints>
+                        <allowempty>true</allowempty>
+                    </constraints>
+                </setting>
+                <setting id="ksrefreshtoken" label="30016" type="string">
+                    <level>0</level>
+                    <enable>false</enable>
+                    <default></default>
+                    <dependencies>
+                        <dependency type="visible" setting="showtokens">true</dependency>
+                    </dependencies>
+                    <control type="edit" format="string">
+                        <heading>30016</heading>
+                    </control>
+                    <constraints>
+                        <allowempty>true</allowempty>
+                    </constraints>
+                </setting>
+                <setting id="ksexpiry" label="30017" type="string">
+                    <level>0</level>
+                    <enable>false</enable>
+                    <default></default>
+                    <dependencies>
+                        <dependency type="visible" setting="showtokens">true</dependency>
+                    </dependencies>
+                    <control type="edit" format="string">
+                        <heading>30017</heading>
+                    </control>
+                    <constraints>
+                        <allowempty>true</allowempty>
+                    </constraints>
+                </setting>
+                <setting id="householdid" label="30070" type="string">
+                    <level>0</level>
+                    <enable>false</enable>
+                    <default></default>
+                    <dependencies>
+                        <dependency type="visible" setting="showtokens">true</dependency>
+                    </dependencies>
+                    <control type="edit" format="string">
+                        <heading>30070</heading>
+                    </control>
+                    <constraints>
+                        <allowempty>true</allowempty>
+                    </constraints>
+                </setting>
+                <setting id="userid" label="30071" type="string">
+                    <level>0</level>
+                    <enable>false</enable>
+                    <default></default>
+                    <dependencies>
+                        <dependency type="visible" setting="showtokens">true</dependency>
+                    </dependencies>
+                    <control type="edit" format="string">
+                        <heading>30071</heading>
+                    </control>
+                    <constraints>
+                        <allowempty>true</allowempty>
+                    </constraints>
+                </setting>
+                <setting id="lastepgupdate" label="30097" type="string">
+                    <level>0</level>
+                    <enable>false</enable>
+                    <default></default>
+                    <dependencies>
+                        <dependency type="visible" setting="showtokens">true</dependency>
+                    </dependencies>
+                    <control type="edit" format="string">
+                        <heading>30097</heading>
+                    </control>
+                    <constraints>
+                        <allowempty>true</allowempty>
+                    </constraints>
+                </setting>
+            </group>
+        </category>
+    </section>
+</settings>
