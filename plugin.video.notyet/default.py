@@ -774,6 +774,8 @@ def add_recording(session: Session) -> None:
     status = recording.get("status")
     if status in ["RECORDING", "SCHEDULED"]:
         dialog.ok(addon_name, addon.getLocalizedString(30127))
+    elif status == "RECORDED":
+        dialog.ok(addon_name, addon.getLocalizedString(30131))
     else:
         dialog.ok(addon_name, addon.getLocalizedString(30051).format(response=status))
 
