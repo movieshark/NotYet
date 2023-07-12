@@ -270,11 +270,12 @@ def export_epg(
     # convert dict to XML and write to file
     with open(path, "w", encoding="utf-8") as f:
         xmltodict.unparse(xmltv_data, output=f, encoding="utf-8")
-    dialog.notification(
-        addon.getAddonInfo("name"),
-        addon.getLocalizedString(30096),
-        xbmcgui.NOTIFICATION_INFO,
-    )
+    if addon.getSettingBool("epgnotifoncompletion"):
+        dialog.notification(
+            addon.getAddonInfo("name"),
+            addon.getLocalizedString(30096),
+            xbmcgui.NOTIFICATION_INFO,
+        )
     addon.setSetting("lastepgupdate", str(int(time())))
 
 

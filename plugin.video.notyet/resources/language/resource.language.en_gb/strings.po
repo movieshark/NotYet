@@ -554,3 +554,7 @@ msgstr ""
 msgctxt "#30129"
 msgid "This program cannot be recorded!"
 msgstr ""
+
+msgctxt "#30130"
+msgid "Notification on EPG fetch completion"
+msgstr ""

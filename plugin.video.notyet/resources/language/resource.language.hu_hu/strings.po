@@ -582,3 +582,7 @@ msgstr "A megadott felvétel azonosító nem létezik!"
 msgctxt "#30129"
 msgid "This program cannot be recorded!"
 msgstr "Ezt a műsort nem lehet felvenni!"
+
+msgctxt "#30130"
+msgid "Notification on EPG fetch completion"
+msgstr "Értesítés az EPG letöltés befejeztekor"
