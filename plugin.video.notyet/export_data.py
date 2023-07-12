@@ -233,7 +233,7 @@ def export_epg(
             else:
                 program_description = epg.get("description", "")
             images = epg.get("images")
-            program_image = None
+            program_image = ""
             if images:
                 program_image = (
                     next(
