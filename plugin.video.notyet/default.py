@@ -1273,9 +1273,11 @@ if __name__ == "__main__":
 
     # main router
     if action is None:
-        if not all([addon.getSetting("username"), addon.getSetting("password")]):
+        if addon.getSettingBool("isfirstrun"):
             # show about dialog
             about_dialog()
+            addon.setSettingBool("isfirstrun", False)
+        if not all([addon.getSetting("username"), addon.getSetting("password")]):
             # show dialog to login
             dialog = xbmcgui.Dialog()
             dialog.ok(addon_name, addon.getLocalizedString(30046))

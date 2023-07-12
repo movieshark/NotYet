@@ -594,3 +594,7 @@ msgstr "A kiegészítő elkészültét a legnagyobb előfizetés díja, illetve 
 msgctxt "#30122"
 msgid "About"
 msgstr "A kiegészítőről"
+
+msgctxt "#30123"
+msgid "First run?"
+msgstr "Első indítás?"

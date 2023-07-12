@@ -535,6 +535,13 @@
                         <allowempty>true</allowempty>
                     </constraints>
                 </setting>
+                <setting id="isfirstrun" label="30123" type="boolean">
+                    <level>0</level>
+                    <enable>false</enable>
+                    <visible>false</visible>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
             </group>
         </category>
     </section>

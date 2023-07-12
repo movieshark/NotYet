@@ -526,3 +526,7 @@ msgstr ""
 msgctxt "#30122"
 msgid "About"
 msgstr ""
+
+msgctxt "#30123"
+msgid "First run?"
+msgstr ""
