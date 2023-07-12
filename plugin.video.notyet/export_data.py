@@ -229,7 +229,7 @@ def export_epg(
             program_id = epg.get("id")
             program_enable_cdvr = epg.get("enableCdvr", True)
             if epg_in_description and program_id:
-                program_description = f"({'!' if program_enable_cdvr else ''}{program_id}) {epg.get('description', '')}"
+                program_description = f"({'' if program_enable_cdvr else '!'}{program_id}) {epg.get('description', '')}"
             else:
                 program_description = epg.get("description", "")
             images = epg.get("images")
