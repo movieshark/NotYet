@@ -236,11 +236,11 @@ def export_epg(
                     )["url"]
                     + "/width/240"
                 )
-            program_tags = epg.get("tags", {})
-            program_content_type = program_tags.get("Content Type", {}).get(
+            program_metas = epg.get("metas", {})
+            program_content_type = program_metas.get("ContentType", {}).get(
                 "value", "Unknown"
             )
-            program_year = program_tags.get("Year", {}).get("value", "Unknown")
+            program_year = program_metas.get("Year", {}).get("value", "1970")
 
             program = {
                 "@start": program_start_date,
@@ -250,7 +250,7 @@ def export_epg(
                 "desc": {"lang": "hu", "#text": program_description},
                 "icon": {"@src": program_image},
                 "category": program_content_type,
-                "date": program_year + "000000 +0000",
+                "date": program_year,
             }
             program_data.append(program)
     xmltv_data = {
