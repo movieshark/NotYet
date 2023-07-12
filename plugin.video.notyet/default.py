@@ -123,7 +123,7 @@ def authenticate(session: Session):
     """
     if not all([addon.getSetting("username"), addon.getSetting("password")]):
         return
-    if not addon.getSetting("oauthaccesstoken"):
+    if not addon.getSetting("devicekey"):
         device_id = gen_random_device_id()
         addon.setSetting("devicekey", device_id)
     ks_expiry = addon.getSetting("ksexpiry")
@@ -139,7 +139,8 @@ def authenticate(session: Session):
     expires = addon.getSetting("oauthexpires")
     prog_dialog = xbmcgui.DialogProgress()
     prog_dialog.create(addon_name)
-    # obtain new OAuth access token only if it expired or doesn't exist
+    # obtain new OAuth access token only if it expired and we don't
+    # have a ks token yet or if it doesn't exist
     if not expires or (
         (expires and int(expires) > current_time) and not addon.getSetting("kstoken")
     ):
