@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.notyet" name="NotYet" version="0.7.2" provider-name="Urban Lamp">
+<addon id="plugin.video.notyet" name="NotYet" version="0.7.3" provider-name="Urban Lamp">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests" version="2.12.4"/>
@@ -28,7 +28,12 @@
         <icon></icon>
         <fanart></fanart>
         <banner></banner>
-        <news></news>
-        <changelog>0.7.2 - initial release</changelog>
+        <news>v0.7.3
+- Fix: device key wasn't generated in some rare cases
+- Fix: first run dialog now shows up on first run
+- Fix: year and category now properly displays in EPG info
+- Feat: added support for basic recording
+- Feat: notification toggle on EPG fetch completion
+        </news>
     </extension>
 </addon>
