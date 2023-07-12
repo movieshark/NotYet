@@ -11,6 +11,7 @@ import xbmcaddon
 import xbmcgui
 import xbmcplugin
 from requests import Session
+from resources.lib.utils import gen_desktop_udid
 from resources.lib.utils import static as utils_static
 from resources.lib.utils import unix_to_date
 from resources.lib.yeti import household, login, media_list, misc, playback
@@ -93,21 +94,6 @@ def add_item(plugin_prefix, handle, name, action, is_directory, **kwargs):
     xbmcplugin.addDirectoryItem(int(handle), url, item, is_directory)
 
 
-def gen_random_device_id(length: int = 16) -> str:
-    """
-    Generate a random device id of the given length.
-    Contains only digits and numbers. i.e., C8027D41A20BC0C7
-
-    :param length: The length of the device id to generate.
-    :return: The generated device id.
-    """
-    from string import ascii_uppercase, digits
-
-    # import only used here so it's fine to import here
-
-    return "".join(choice(ascii_uppercase + digits) for _ in range(length))
-
-
 def authenticate(session: Session):
     """
     Method to be called to check authentication state. If not authenticated, it will
@@ -124,7 +110,7 @@ def authenticate(session: Session):
     if not all([addon.getSetting("username"), addon.getSetting("password")]):
         return
     if not addon.getSetting("devicekey"):
-        device_id = gen_random_device_id()
+        device_id = gen_desktop_udid()
         addon.setSetting("devicekey", device_id)
     ks_expiry = addon.getSetting("ksexpiry")
 
