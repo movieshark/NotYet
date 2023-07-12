@@ -518,7 +518,7 @@ msgid "The completion of the add-on was made possible by paying the fee of the h
 "on.\n"
 "8. The add-on supports both Hungarian and English languages. If Kodi starts in English, the add-on will also be in English. I welcome translations into other languages (if you see the need).\n"
 "9. The add-on is not prepared for the scenario where you are logged out of the platform or another registered device on the platform logs you out due to reasons beyond your control. In such cases, it may encounter errors. Please make sure that your subscription is active, the official applications are working, and you have not exceeded the allowed device limit before reporting an error. It is recommended to delete cached login data, and if that doesn't solve the issue, use the option to delete the device identifier, which attempts to log in again and register the device.\n"
-"10. Recording is currently not possible with the add-on. However, there is no obstacle to viewing recordings initiated from the official app.\n"
+"10. Recording is currently only possible if you enable the IPTV Simple integration. The EPG description will contain the recording ID in brackets. If the ID starts with a '!' sign, you may not record that program. Remember the ID and enter it in the addon's main menu to setup a recording. Upon entering you will get a confirmation whether the recording was successfully initiated or not. There is no obstacle to viewing recordings initiated from the official app.\n"
 "\n"
 "Thank you for reading, and enjoy!"
 msgstr ""
@@ -529,4 +529,28 @@ msgstr ""
 
 msgctxt "#30123"
 msgid "First run?"
+msgstr ""
+
+msgctxt "#30124"
+msgid "Add recording ID to EPG description"
+msgstr ""
+
+msgctxt "#30125"
+msgid "Add recording"
+msgstr ""
+
+msgctxt "#30126"
+msgid "Enter the recording ID (find it in the EPG description)"
+msgstr ""
+
+msgctxt "#30127"
+msgid "Recording successfully added!"
+msgstr ""
+
+msgctxt "#30128"
+msgid "The provided recording ID doesn't exist!"
+msgstr ""
+
+msgctxt "#30129"
+msgid "This program cannot be recorded!"
 msgstr ""

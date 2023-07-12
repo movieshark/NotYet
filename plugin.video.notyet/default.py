@@ -304,6 +304,14 @@ def main_menu() -> None:
         action="rec_main",
         is_directory=True,
     )
+    # add recording
+    add_item(
+        plugin_prefix=argv[0],
+        handle=argv[1],
+        name=addon.getLocalizedString(30125),
+        action="rec_add",
+        is_directory=True,
+    )
     # list of movies
     add_item(
         plugin_prefix=argv[0],
@@ -730,6 +738,44 @@ def recording_listing(session: Session, media_id: int = None) -> None:
         )
     xbmcplugin.endOfDirectory(int(argv[1]))
     xbmcplugin.setContent(int(argv[1]), "episodes" if media_id else "tvshows")
+
+
+def add_recording(session: Session) -> None:
+    """
+    Get an ID back from the user and try to record it.
+
+    :param session: requests session
+    :return: None
+    """
+    # show a numeric dialog to get the ID
+    dialog = xbmcgui.Dialog()
+    user_input = dialog.numeric(0, addon.getLocalizedString(30126))
+    if not user_input:
+        return
+    # try to record the ID
+    try:
+        recording = misc.create_single_recording(
+            session,
+            addon.getSetting("kstoken"),
+            user_input,
+            api_version=addon.getSetting("apiversion"),
+            client_tag=addon.getSetting("clienttag"),
+        )
+    except misc.RecordingCreationError as e:
+        if e.code == "4024":
+            # InvalidAssetId
+            dialog.ok(addon_name, addon.getLocalizedString(30128))
+        elif e.code == "3035":
+            # ProgramCdvrNotEnabled
+            dialog.ok(addon_name, addon.getLocalizedString(30129))
+        else:
+            dialog.ok(addon_name, str(e))
+        return
+    status = recording.get("status")
+    if status in ["RECORDING", "SCHEDULED"]:
+        dialog.ok(addon_name, addon.getLocalizedString(30127))
+    else:
+        dialog.ok(addon_name, addon.getLocalizedString(30051).format(response=status))
 
 
 def movies_listing(session: Session, action: str, movie_id: int, page: int) -> None:
@@ -1306,6 +1352,8 @@ if __name__ == "__main__":
         recording_listing(session)
     elif action == "rec_titles":
         recording_listing(session, params.get("id"))
+    elif action == "rec_add":
+        add_recording(session)
     elif action == "del_rec":
         delete_recording(session, params.get("id"))
     elif action == "device_list":

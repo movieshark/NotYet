@@ -174,6 +174,7 @@ def export_epg(
         )
         return
     authenticate(_session)
+    epg_in_description = addon.getSettingBool("epgidindesc")
     # channel data
     channels = media_list.get_channel_list(
         _session,
@@ -224,8 +225,13 @@ def export_epg(
                 return
             program_start_date = unix_to_epg_time(epg.get("startDate", 0))
             program_end_date = unix_to_epg_time(epg.get("endDate", 0))
-            program_name = epg.get("name")
-            program_description = epg.get("description")
+            program_name = epg.get("name", "")
+            program_id = epg.get("id")
+            program_enable_cdvr = epg.get("enableCdvr", True)
+            if epg_in_description and program_id:
+                program_description = f"({'!' if program_enable_cdvr else ''}{program_id}) {epg.get('description', '')}"
+            else:
+                program_description = epg.get("description", "")
             images = epg.get("images")
             program_image = None
             if images:

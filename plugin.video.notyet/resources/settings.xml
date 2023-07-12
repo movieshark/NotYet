@@ -170,6 +170,11 @@
                         <heading>30102</heading>
                     </control>
                 </setting>
+                <setting id="epgidindesc" label="30124" type="boolean">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
                 <setting id="exportepg" type="action" label="30095">
                     <level>0</level>
                     <data>RunPlugin(plugin://$ID/?action=export_epg)</data>
