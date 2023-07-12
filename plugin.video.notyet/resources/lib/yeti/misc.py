@@ -90,3 +90,46 @@ def create_single_recording(
             response.json()["result"]["error"]["code"],
         )
     return response.json()["result"]
+
+
+def create_series_recording(
+    _session: Session, ks_token: str, media_id: int, series_id: int, **kwargs
+) -> dict:
+    """
+    Create a recording for a series.
+
+    :param _session: requests.Session object
+    :param ks_token: The ks token
+    :param media_id: The ID of the series to record
+    :param kwargs: Optional arguments
+    :return: The result of the recording request
+    """
+    # example return value: {"objectType": "SeriesRecording", "channelId": 4448, "createDate": 1689161210, "epgId":
+    #  145274606, "excludedSeasons": [], "id": 1702530, "seriesId": "1587156", "seriesRecordingOption": {"objectType":
+    #  "SeriesRecordingOption", "chronologicalRecordStartTime": "NONE"}, "type": "SERIES", "updateDate": 1689161210}
+    # TODO: currently unused
+    api_version = kwargs.get("api_version", static.api_version)
+    client_tag = kwargs.get("client_tag", static.app_version_with_build)
+    data = {
+        "language": "hun",
+        "ks": ks_token,
+        "recording": {
+            "objectType": f"{static.get_ott_platform_name()}SeriesRecording",
+            "epgId": media_id,
+            "seriesId": series_id,
+            "type": "SERIES",
+        },
+        "clientTag": client_tag,
+        "apiVersion": api_version,
+    }
+    response = _session.post(
+        f"{static.get_ott_base()}api_v3/service/seriesrecording/action/add",
+        params=static.get_common_params(client_tag),
+        json=data,
+    )
+    if response.json().get("result", {}).get("error"):
+        raise RecordingCreationError(
+            response.json()["result"]["error"]["message"],
+            response.json()["result"]["error"]["code"],
+        )
+    return response.json()["result"]
