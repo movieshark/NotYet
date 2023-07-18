@@ -102,7 +102,7 @@ def export_channel_list(_session: Session) -> None:
         if is_adult:
             category += ";18+"
         # print channel data to m3u
-        output += f'#EXTINF:-1 tvg-id="{channel_id}" tvg-name="{name}" tvg-logo="{image}" group-title="{category}",{formatted_name}\n'
+        output += f'#EXTINF:-1 tvg-id="{channel_id}" tvg-name="{name}" tvg-logo="{image}" group-title="{category}" catchup="vod",{formatted_name}\n'
         query = {
             "action": "play_channel",
             "name": formatted_name,
@@ -258,6 +258,10 @@ def export_epg(
                 "category": program_content_type,
                 "date": program_year,
             }
+            if program_enable_cdvr:
+                program[
+                    "@catchup-id"
+                ] = f"plugin://plugin.video.notyet/?action=catchup&id={program_id}&start={epg.get('startDate', 0)}&end={epg.get('endDate', 0)}"
             program_data.append(program)
     xmltv_data = {
         "tv": {

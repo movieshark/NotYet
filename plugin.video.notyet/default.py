@@ -726,16 +726,20 @@ def recording_listing(session: Session, media_id: int = None) -> None:
     xbmcplugin.setContent(int(argv[1]), "episodes" if media_id else "tvshows")
 
 
-def add_recording(session: Session) -> None:
+def add_recording(session: Session, media_id: int = None) -> None:
     """
     Get an ID back from the user and try to record it.
 
     :param session: requests session
+    :param id: media ID to record
     :return: None
     """
     # show a numeric dialog to get the ID
     dialog = xbmcgui.Dialog()
-    user_input = dialog.numeric(0, addon.getLocalizedString(30126))
+    if not media_id:
+        user_input = dialog.numeric(0, addon.getLocalizedString(30126))
+    else:
+        user_input = media_id
     if not user_input:
         return
     # try to record the ID
@@ -1297,6 +1301,48 @@ def about_dialog() -> None:
     )
 
 
+def catchup(id: str, start: str, stop: str) -> None:
+    """
+    Called whenever IPTV Simple Client wants to play a catchup stream.
+    Shows a dialog to the user, asking if they want to play the catchup stream or
+     set a recording and initiates the selected action.
+
+    :param id: program id
+    :param start: start time
+    :param stop: stop time
+    :return: None
+    """
+    dialog = xbmcgui.Dialog()
+    # if it was in the past and ended already, let's play it
+    if int(start) < int(time()) and int(stop) < int(time()):
+        play(session, id, "epg", "", "")
+    # if it's in the future, but hasn't started yet, offer to set a recording
+    elif int(start) > int(time()):
+        if dialog.yesno(
+            addon_name,
+            addon.getLocalizedString(30132),
+            yeslabel=addon.getLocalizedString(30134),
+            nolabel=addon.getLocalizedString(30136),
+            defaultbutton=xbmcgui.DLG_YESNO_YES_BTN,
+        ):
+            # set recording
+            add_recording(session, id)
+    # if it started, but hasn't ended yet, offer the user the option to either watch it or set a recording
+    elif int(start) < int(time()) and int(stop) > int(time()):
+        choice = dialog.yesnocustom(
+            addon_name,
+            addon.getLocalizedString(30133),
+            customlabel=addon.getLocalizedString(30136),
+            nolabel=addon.getLocalizedString(30134),
+            yeslabel=addon.getLocalizedString(30135),
+            defaultbutton=xbmcgui.DLG_YESNO_NO_BTN,
+        )
+        if choice == 0:
+            add_recording(session, id)
+        elif choice == 1:
+            play(session, id, "epg", "", "")
+
+
 if __name__ == "__main__":
     params = dict(parse_qsl(argv[2].replace("?", "")))
     action = params.get("action")
@@ -1342,6 +1388,8 @@ if __name__ == "__main__":
         recording_listing(session, params.get("id"))
     elif action == "rec_add":
         add_recording(session)
+    elif action == "catchup":
+        catchup(params.get("id"), params.get("start"), params.get("end"))
     elif action == "del_rec":
         delete_recording(session, params.get("id"))
     elif action == "device_list":
