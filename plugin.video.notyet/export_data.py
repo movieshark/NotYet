@@ -252,12 +252,24 @@ def export_epg(
                 "@start": program_start_date,
                 "@stop": program_end_date,
                 "@channel": channel_id,
-                "title": {"lang": "hu", "#text": program_name},
-                "desc": {"lang": "hu", "#text": program_description},
+                "title": {"@lang": "hu", "#text": program_name},
+                "desc": {"@lang": "hu", "#text": program_description},
                 "icon": {"@src": program_image},
                 "category": program_content_type,
                 "date": program_year,
             }
+            if program_content_type == "Series":
+                # NOTE: apparently metas.IsSeries is often true for movies as well
+                program_season = int(
+                    program_metas.get("SeasonNumber", {}).get("value", 1)
+                )
+                program_episode = int(
+                    program_metas.get("EpisodeNumber", {}).get("value", 1)
+                )
+                program["episode-num"] = {
+                    "@system": "xmltv_ns",
+                    "#text": f"{program_season - 1}.{program_episode - 1}.",
+                }
             if program_enable_cdvr:
                 program[
                     "@catchup-id"
