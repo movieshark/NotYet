@@ -590,6 +590,8 @@ def play(session: Session, media_id: int, extra: str, title: str, icon: str) -> 
         "inputstream.adaptive.manifest_headers",
         urlencode({"User-Agent": addon.getSetting("useragent")}),
     )
+    if addon.getSettingBool("markhundubdefault"):
+        play_item.setProperty("inputstream.adaptive.original_audio_language", "hu")
     # if DRM protected, set license URL
     if license_url:
         if not is_helper.check_inputstream():
