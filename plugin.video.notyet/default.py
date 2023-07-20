@@ -134,7 +134,7 @@ def authenticate(session: Session):
         try:
             access_token, refresh_token, expires_in = login.login(
                 session,
-                device_id,
+                addon.getSetting("devicekey"),
                 addon.getSetting("username"),
                 addon.getSetting("password"),
                 user_agent=user_agent,
@@ -168,6 +168,11 @@ def authenticate(session: Session):
                 client_tag=addon.getSetting("clienttag"),
             )
         except login.RefreshSessionFailed as e:
+            # invalid refresh token
+            if e.code == "500017":
+                clear_settings(True)
+                authenticate(session)
+                return
             dialog = xbmcgui.Dialog()
             dialog.ok(addon_name, str(e))
             return
@@ -191,7 +196,7 @@ def authenticate(session: Session):
                 session,
                 access_token,
                 anon_ks_token,
-                device_id,
+                addon.getSetting("devicekey"),
                 api_version=addon.getSetting("apiversion"),
                 client_tag=addon.getSetting("clienttag"),
                 partner_id=addon.getSetting("partnerid"),
@@ -208,7 +213,7 @@ def authenticate(session: Session):
             got_device_id = login.get_or_add_device_to_household(
                 session,
                 ks_token,
-                device_id,
+                addon.getSetting("devicekey"),
                 name=addon.getSetting("devicenick"),
                 api_version=addon.getSetting("apiversion"),
                 client_tag=addon.getSetting("clienttag"),
@@ -1211,10 +1216,11 @@ def delete_device(session: Session, device_id: str) -> None:
         xbmc.executebuiltin("Container.Refresh")
 
 
-def clear_settings() -> None:
+def clear_settings(keep_user_agent: bool = False) -> None:
     """
     Clear all stored tokens.
 
+    :param keep_user_agent: whether to keep the user agent
     :return: None
     """
     addon.setSetting("oauthaccesstoken", "")
@@ -1223,7 +1229,8 @@ def clear_settings() -> None:
     addon.setSetting("kstoken", "")
     addon.setSetting("ksrefreshtoken", "")
     addon.setSetting("ksexpiry", "")
-    addon.setSetting("useragent", "")
+    if not keep_user_agent:
+        addon.setSetting("useragent", "")
 
 
 def reset_device_key(session: Session) -> None:
