@@ -608,3 +608,7 @@ msgstr "Megnézem!"
 msgctxt "#30136"
 msgid "Nevermind"
 msgstr "Mégsem"
+
+msgctxt "#30137"
+msgid "Mark Hungarian dub as default"
+msgstr "Magyar hang alapértelmezettnek jelölése"

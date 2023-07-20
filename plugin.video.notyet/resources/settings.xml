@@ -58,6 +58,11 @@
                     <default>true</default>
                     <control type="toggle"/>
                 </setting>
+                <setting id="markhundubdefault" label="30137" type="boolean">
+                    <level>0</level>
+                    <default>false</default>
+                    <control type="toggle"/>
+                </setting>
             </group>
         </category>
         <category id="export" label="30077">

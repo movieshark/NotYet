@@ -6,7 +6,7 @@ from . import static
 def get_playback_obj(_session: Session, ks_token: str, media_id: int, **kwargs) -> dict:
     """
     Get the playback object for a media item. This is used to get the playback URL and
-     optionally the DRM details. Right MPEG-DASH is hardcoded.
+     optionally the DRM details. Right now MPEG-DASH is hardcoded.
 
     :param _session: requests.Session object
     :param ks_token: The ks token

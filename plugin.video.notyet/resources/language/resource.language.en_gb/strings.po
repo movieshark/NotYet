@@ -582,3 +582,7 @@ msgstr ""
 msgctxt "#30136"
 msgid "Nevermind"
 msgstr ""
+
+msgctxt "#30137"
+msgid "Mark Hungarian dub as default"
+msgstr ""
