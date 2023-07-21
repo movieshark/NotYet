@@ -181,19 +181,19 @@ class XBMCPlayer(xbmc.Player):
                     f"{handle} Playback Manager Service: failed to parse query string",
                     xbmc.LOGERROR,
                 )
-        if addon.getSettingBool("preferhundub"):
-            audios = self.getAvailableAudioStreams()
-            if audios:
-                audio = next((audio for audio in audios if "hu" in audio.lower()), None)
-                if audio:
-                    # the sleep is required so the playback doesn't start from the beginning
-                    # possibly a kodi bug
-                    xbmc.sleep(3000)
-                    xbmc.log(
-                        f"{handle} Playback Manager Service: switching to {audio} audio",
-                        xbmc.LOGINFO,
-                    )
-                    player.setAudioStream(audios.index(audio))
+            if addon.getSettingBool("preferhundub"):
+                audios = self.getAvailableAudioStreams()
+                if audios:
+                    audio = next((audio for audio in audios if "hu" in audio.lower()), None)
+                    if audio:
+                        # the sleep is required so the playback doesn't start from the beginning
+                        # possibly a kodi bug
+                        xbmc.sleep(3000)
+                        xbmc.log(
+                            f"{handle} Playback Manager Service: switching to {audio} audio",
+                            xbmc.LOGINFO,
+                        )
+                        player.setAudioStream(audios.index(audio))
 
     def onPlayBackStopped(self) -> None:
         if self.played_url:
