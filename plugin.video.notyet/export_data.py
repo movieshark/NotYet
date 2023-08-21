@@ -13,7 +13,7 @@ from requests import Session
 from resources.lib.yeti import media_list
 
 addon = xbmcaddon.Addon()
-handle = "[NotYet]"
+handle = f"[{addon.getAddonInfo('name')}]"
 
 
 def get_path(is_epg: bool = False) -> str:
@@ -258,18 +258,16 @@ def export_epg(
                 "category": program_content_type,
                 "date": program_year,
             }
-            if program_content_type == "Series":
-                # NOTE: apparently metas.IsSeries is often true for movies as well
-                program_season = int(
-                    program_metas.get("SeasonNumber", {}).get("value", 1)
-                )
-                program_episode = int(
-                    program_metas.get("EpisodeNumber", {}).get("value", 1)
-                )
+            program_season = program_metas.get("SeasonNumber", {}).get("value")
+            program_episode = program_metas.get("EpisodeNumber", {}).get("value")
+            if program_season and program_episode:
                 program["episode-num"] = {
                     "@system": "xmltv_ns",
-                    "#text": f"{program_season - 1}.{program_episode - 1}.",
+                    "#text": f"{int(program_season) - 1}.{int(program_episode) - 1}.",
                 }
+            program_episode_name = program_metas.get("EpisodeName", {}).get("value")
+            if program_episode_name:
+                program["sub-title"] = {"@lang": "hu", "#text": program_episode_name}
             if program_enable_cdvr:
                 program[
                     "@catchup-id"
