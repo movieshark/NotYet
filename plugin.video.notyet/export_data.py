@@ -246,7 +246,7 @@ def export_epg(
             program_content_type = program_metas.get("ContentType", {}).get(
                 "value", "Unknown"
             )
-            program_year = program_metas.get("Year", {}).get("value", "1970")
+            program_year = program_metas.get("Year", {}).get("value")
 
             program = {
                 "@start": program_start_date,
@@ -256,8 +256,9 @@ def export_epg(
                 "desc": {"@lang": "hu", "#text": program_description},
                 "icon": {"@src": program_image},
                 "category": program_content_type,
-                "date": program_year,
             }
+            if program_year:
+                program["date"] = program_year
             program_season = program_metas.get("SeasonNumber", {}).get("value")
             program_episode = program_metas.get("EpisodeNumber", {}).get("value")
             if program_season and program_episode:
