@@ -393,7 +393,7 @@ def days_to_seconds(days: int) -> int:
     return days * 24 * 60 * 60
 
 
-def main_service():
+def main_service() -> EPGUpdaterThread:
     """
     Main service loop.
     """
@@ -426,19 +426,10 @@ def main_service():
     to_time = days_to_seconds(int(to_time))
     frequency = int_to_time(int(frequency))
     # start epg updater thread
-    monitor = xbmc.Monitor()
     epg_updater = EPGUpdaterThread(_session, from_time, to_time, frequency, last_update)
     epg_updater.start()
     xbmc.log(f"{handle} Export EPG service started", level=xbmc.LOGINFO)
-    while not monitor.abortRequested():
-        if monitor.waitForAbort(1):
-            break
-    epg_updater.stop()
-    try:
-        epg_updater.join()
-    except RuntimeError:
-        pass
-    xbmc.log(f"{handle} Export EPG service stopped", level=xbmc.LOGINFO)
+    return epg_updater
 
 
 if __name__ == "__main__":

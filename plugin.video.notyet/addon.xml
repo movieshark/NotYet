@@ -29,7 +29,7 @@
         <fanart></fanart>
         <banner></banner>
         <news>v0.7.7
-- Fix: only switch audio on our streams
+- Fix: only switch audio on our stream
         </news>
     </extension>
 </addon>

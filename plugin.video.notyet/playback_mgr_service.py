@@ -13,9 +13,9 @@ from resources.lib.yeti import static
 # and the media playback is paused
 # once the playback is stopped, also sends a teardown request
 
-handle = "[NotYet]"
 timeout = 5
 addon = xbmcaddon.Addon()
+handle = f"[{addon.getAddonInfo('name')}]"
 
 xbmc.log(f"{handle} Playback Manager Service started", xbmc.LOGINFO)
 
@@ -184,7 +184,9 @@ class XBMCPlayer(xbmc.Player):
             if addon.getSettingBool("preferhundub"):
                 audios = self.getAvailableAudioStreams()
                 if audios:
-                    audio = next((audio for audio in audios if "hu" in audio.lower()), None)
+                    audio = next(
+                        (audio for audio in audios if "hu" in audio.lower()), None
+                    )
                     if audio:
                         # the sleep is required so the playback doesn't start from the beginning
                         # possibly a kodi bug
@@ -304,9 +306,16 @@ class XBMCPlayer(xbmc.Player):
 if __name__ == "__main__":
     monitor = xbmc.Monitor()
     player = XBMCPlayer()
-    main_service()
+    epg_updater = main_service()
     while not monitor.abortRequested():
         if monitor.waitForAbort(1):
             break
+    if epg_updater and epg_updater.is_alive():
+        epg_updater.stop()
+        try:
+            epg_updater.join()
+        except RuntimeError:
+            pass
+        xbmc.log(f"{handle} Export EPG service stopped", level=xbmc.LOGINFO)
     player.stop_keepalive_thread()
     xbmc.log(f"{handle} Playback Manager Service stopped", xbmc.LOGINFO)
