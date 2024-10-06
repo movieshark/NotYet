@@ -306,10 +306,12 @@ class XBMCPlayer(xbmc.Player):
 if __name__ == "__main__":
     monitor = xbmc.Monitor()
     player = XBMCPlayer()
-    epg_updater = main_service()
+    epg_updater = main_service(addon)
     while not monitor.abortRequested():
         if monitor.waitForAbort(1):
             break
+    player.stop_keepalive_thread()
+    xbmc.log(f"{handle} Playback Manager Service stopped", xbmc.LOGINFO)
     if epg_updater and epg_updater.is_alive():
         epg_updater.stop()
         try:
@@ -317,5 +319,3 @@ if __name__ == "__main__":
         except RuntimeError:
             pass
         xbmc.log(f"{handle} Export EPG service stopped", level=xbmc.LOGINFO)
-    player.stop_keepalive_thread()
-    xbmc.log(f"{handle} Playback Manager Service stopped", xbmc.LOGINFO)

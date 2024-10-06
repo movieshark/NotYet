@@ -94,7 +94,7 @@ def add_item(plugin_prefix, handle, name, action, is_directory, **kwargs):
     xbmcplugin.addDirectoryItem(int(handle), url, item, is_directory)
 
 
-def authenticate(session: Session):
+def authenticate(session: Session, addon_from_thread: xbmcaddon.Addon = None) -> None:
     """
     Method to be called to check authentication state. If not authenticated, it will
     handle the entire authentication process including OAuth login and KS token retrieval as
@@ -107,151 +107,158 @@ def authenticate(session: Session):
     :param session: The requests session to use for the authentication.
     :return: None
     """
-    if not all([addon.getSetting("username"), addon.getSetting("password")]):
+    addon_local = addon_from_thread or addon
+
+    if not all(
+        [addon_local.getSetting("username"), addon_local.getSetting("password")]
+    ):
         return
-    if not addon.getSetting("devicekey"):
+    if not addon_local.getSetting("devicekey"):
         device_id = gen_desktop_udid()
-        addon.setSetting("devicekey", device_id)
-    ks_expiry = addon.getSetting("ksexpiry")
+        addon_local.setSetting("devicekey", device_id)
+    ks_expiry = addon_local.getSetting("ksexpiry")
 
     if ks_expiry and int(ks_expiry) > int(time()):
         return  # KS token is valid so no need to reauthenticate
-    user_agent = addon.getSetting("useragent")
+    user_agent = addon_local.getSetting("useragent")
 
     # OAuth login
     # NOTE: while we store the OAuth access token, there is
     # no session renewal implemented yet
     current_time = int(time())
-    expires = addon.getSetting("oauthexpires")
+    expires = addon_local.getSetting("oauthexpires")
     prog_dialog = xbmcgui.DialogProgress()
-    prog_dialog.create(addon_name)
+    prog_dialog.create(addon_local.getAddonInfo("name"))
     # obtain new OAuth access token only if it expired and we don't
     # have a ks token yet or if it doesn't exist
     if not expires or (
-        (expires and int(expires) > current_time) and not addon.getSetting("kstoken")
+        (expires and int(expires) > current_time)
+        and not addon_local.getSetting("kstoken")
     ):
         prog_dialog.update(50, addon.getLocalizedString(30027))
         try:
             access_token, refresh_token, expires_in = login.login(
                 session,
-                addon.getSetting("devicekey"),
-                addon.getSetting("username"),
-                addon.getSetting("password"),
+                addon_local.getSetting("devicekey"),
+                addon_local.getSetting("username"),
+                addon_local.getSetting("password"),
                 user_agent=user_agent,
-                app_version=addon.getSetting("appversion"),
-                client_tag=addon.getSetting("clienttag"),
-                partner_id=addon.getSetting("partnerid"),
-                platform=addon.getSetting("platform"),
-                device_family=addon.getSetting("devicefamily"),
-                device_brand=addon.getSetting("devicebrand"),
-                firmware=addon.getSetting("firmware"),
-                tv_pil_version=addon.getSetting("tvpilversion"),
-                realm=addon.getSetting("realm"),
+                app_version=addon_local.getSetting("appversion"),
+                client_tag=addon_local.getSetting("clienttag"),
+                partner_id=addon_local.getSetting("partnerid"),
+                platform=addon_local.getSetting("platform"),
+                device_family=addon_local.getSetting("devicefamily"),
+                device_brand=addon_local.getSetting("devicebrand"),
+                firmware=addon_local.getSetting("firmware"),
+                tv_pil_version=addon_local.getSetting("tvpilversion"),
+                realm=addon_local.getSetting("realm"),
             )
         except login.LoginFailed as e:
             dialog = xbmcgui.Dialog()
-            dialog.ok(addon_name, str(e))
+            dialog.ok(addon_local.getAddonInfo("name"), str(e))
             return
-        addon.setSetting("oauthaccesstoken", access_token)
-        addon.setSetting("oauthrefreshtoken", refresh_token)
-        addon.setSetting("oauthexpires", str(current_time + expires_in))
+        addon_local.setSetting("oauthaccesstoken", access_token)
+        addon_local.setSetting("oauthrefreshtoken", refresh_token)
+        addon_local.setSetting("oauthexpires", str(current_time + expires_in))
     # KS login
     # refresh KS token if it expired
     if ks_expiry and int(ks_expiry) < current_time:
-        prog_dialog.update(85, addon.getLocalizedString(30028))
+        prog_dialog.update(85, addon_local.getLocalizedString(30028))
         try:
             ks_token, ks_refresh_token, ks_expiry = login.refresh_ks_token(
                 session,
-                addon.getSetting("kstoken"),
-                addon.getSetting("ksrefreshtoken"),
-                api_version=addon.getSetting("apiversion"),
-                client_tag=addon.getSetting("clienttag"),
+                addon_local.getSetting("kstoken"),
+                addon_local.getSetting("ksrefreshtoken"),
+                api_version=addon_local.getSetting("apiversion"),
+                client_tag=addon_local.getSetting("clienttag"),
             )
         except login.RefreshSessionFailed as e:
             # invalid refresh token
             if e.code == "500017":
                 clear_settings(True)
-                authenticate(session)
+                authenticate(session, addon_from_thread)
                 return
             dialog = xbmcgui.Dialog()
-            dialog.ok(addon_name, str(e))
+            dialog.ok(addon_local.getAddonInfo("name"), str(e))
             return
-        addon.setSetting("kstoken", ks_token)
-        addon.setSetting("ksrefreshtoken", ks_refresh_token)
-        addon.setSetting("ksexpiry", str(ks_expiry))
+        addon_local.setSetting("kstoken", ks_token)
+        addon_local.setSetting("ksrefreshtoken", ks_refresh_token)
+        addon_local.setSetting("ksexpiry", str(ks_expiry))
     # obtain new KS token if it doesn't exist
-    if not addon.getSetting("kstoken"):
-        prog_dialog.update(65, addon.getLocalizedString(30029))
+    if not addon_local.getSetting("kstoken"):
+        prog_dialog.update(65, addon_local.getLocalizedString(30029))
         # anonymous login
         anon_ks_token, _, _ = login.anonymous_login(
             session,
-            api_version=addon.getSetting("apiversion"),
-            client_tag=addon.getSetting("clienttag"),
-            partner_id=addon.getSetting("partnerid"),
+            api_version=addon_local.getSetting("apiversion"),
+            client_tag=addon_local.getSetting("clienttag"),
+            partner_id=addon_local.getSetting("partnerid"),
         )
-        prog_dialog.update(75, addon.getLocalizedString(30030))
+        prog_dialog.update(75, addon_local.getLocalizedString(30030))
         # login using the OAuth access token and anonymous KS token
         try:
             ks_token, ks_refresh_token, ks_expiry = login.login_ott(
                 session,
                 access_token,
                 anon_ks_token,
-                addon.getSetting("devicekey"),
-                api_version=addon.getSetting("apiversion"),
-                client_tag=addon.getSetting("clienttag"),
-                partner_id=addon.getSetting("partnerid"),
-                ott_password=addon.getSetting("ottpassword"),
-                ott_username=addon.getSetting("ottusername"),
+                addon_local.getSetting("devicekey"),
+                api_version=addon_local.getSetting("apiversion"),
+                client_tag=addon_local.getSetting("clienttag"),
+                partner_id=addon_local.getSetting("partnerid"),
+                ott_password=addon_local.getSetting("ottpassword"),
+                ott_username=addon_local.getSetting("ottusername"),
             )
         except login.LoginFailed as e:
             dialog = xbmcgui.Dialog()
-            dialog.ok(addon_name, str(e))
+            dialog.ok(addon_local.getAddonInfo("name"), str(e))
             return
-        prog_dialog.update(85, addon.getLocalizedString(30031))
+        prog_dialog.update(85, addon_local.getLocalizedString(30031))
         # register device or get device id if already registered
         try:
             got_device_id = login.get_or_add_device_to_household(
                 session,
                 ks_token,
-                addon.getSetting("devicekey"),
-                name=addon.getSetting("devicenick"),
-                api_version=addon.getSetting("apiversion"),
-                client_tag=addon.getSetting("clienttag"),
-                device_brand=addon.getSetting("devicebrand"),
+                addon_local.getSetting("devicekey"),
+                name=addon_local.getSetting("devicenick"),
+                api_version=addon_local.getSetting("apiversion"),
+                client_tag=addon_local.getSetting("clienttag"),
+                device_brand=addon_local.getSetting("devicebrand"),
             )
             assert got_device_id == device_id
         except AssertionError:
             dialog = xbmcgui.Dialog()
-            dialog.ok(addon_name, addon.getLocalizedString(30032))
+            dialog.ok(
+                addon_local.getAddonInfo("name"), addon_local.getLocalizedString(30032)
+            )
             return
         except login.AddHouseHoldDeviceError as e:
             dialog = xbmcgui.Dialog()
-            dialog.ok(addon_name, str(e))
+            dialog.ok(addon_local.getAddonInfo("name"), str(e))
             return
-        addon.setSetting("kstoken", ks_token)
-        addon.setSetting("ksrefreshtoken", ks_refresh_token)
-        addon.setSetting("ksexpiry", str(ks_expiry))
-        prog_dialog.update(95, addon.getLocalizedString(30072))
+        addon_local.setSetting("kstoken", ks_token)
+        addon_local.setSetting("ksrefreshtoken", ks_refresh_token)
+        addon_local.setSetting("ksexpiry", str(ks_expiry))
+        prog_dialog.update(95, addon_local.getLocalizedString(30072))
         # get household id and user id
         # used later for playback stats
         household_obj = household.get_household(
             session,
             ks_token,
-            api_version=addon.getSetting("apiversion"),
-            client_tag=addon.getSetting("clienttag"),
+            api_version=addon_local.getSetting("apiversion"),
+            client_tag=addon_local.getSetting("clienttag"),
         )
         household_id = household_obj.get("id", -1)
-        addon.setSetting("householdid", str(household_id))
+        addon_local.setSetting("householdid", str(household_id))
         user_id = next(
             (user.get("id") for user in household_obj.get("users", [])),
             -1,
         )
-        addon.setSetting("userid", str(user_id))
+        addon_local.setSetting("userid", str(user_id))
     prog_dialog.close()
     # show notification
     xbmcgui.Dialog().notification(
-        addon_name,
-        addon.getLocalizedString(30033),
+        addon_local.getAddonInfo("name"),
+        addon_local.getLocalizedString(30033),
         icon=xbmcgui.NOTIFICATION_INFO,
         time=5000,
     )
@@ -1294,7 +1301,7 @@ def update_epg(_session: Session) -> None:
         addon_name,
         f"{addon.getLocalizedString(30100)}: {int_to_time(from_time)} - {int_to_time(to_time)}",
     )
-    export_epg(_session, from_time, to_time)
+    export_epg(addon, _session, from_time, to_time)
 
 
 def about_dialog() -> None:

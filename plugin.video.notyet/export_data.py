@@ -12,11 +12,8 @@ from default import authenticate
 from requests import Session
 from resources.lib.yeti import media_list
 
-addon = xbmcaddon.Addon()
-handle = f"[{addon.getAddonInfo('name')}]"
 
-
-def get_path(is_epg: bool = False) -> str:
+def get_path(addon: xbmcaddon.Addon, is_epg: bool = False) -> str:
     """
     Check if the channel and epg path exists
 
@@ -40,7 +37,7 @@ def get_path(is_epg: bool = False) -> str:
     return xbmcvfs.translatePath(f"{path}/{name}")
 
 
-def export_channel_list(_session: Session) -> None:
+def export_channel_list(addon: xbmcaddon.Addon, _session: Session) -> None:
     """
     Export channel list to an m3u file
 
@@ -49,7 +46,7 @@ def export_channel_list(_session: Session) -> None:
     """
     dialog = xbmcgui.Dialog()
     try:
-        path = get_path()
+        path = get_path(addon)
     except IOError as e:
         dialog.notification(
             addon.getAddonInfo("name"),
@@ -64,7 +61,7 @@ def export_channel_list(_session: Session) -> None:
             xbmcgui.NOTIFICATION_ERROR,
         )
         return
-    authenticate(_session)
+    authenticate(_session, addon)
     # print m3u header
     output = "#EXTM3U\n\n"
     channels = media_list.get_channel_list(
@@ -141,7 +138,11 @@ def unix_to_epg_time(unix_time: int) -> str:
 
 
 def export_epg(
-    _session: Session, from_time: int, to_time: int, kill_event: threading.Event = None
+    addon: xbmcaddon.Addon,
+    _session: Session,
+    from_time: int,
+    to_time: int,
+    kill_event: threading.Event = None,
 ):
     """
     Exports all EPG data between two timestamps to an XMLTV file.
@@ -153,12 +154,12 @@ def export_epg(
     :return: None
     """
     xbmc.log(
-        f"{handle} Exporting EPG data from {unix_to_epg_time(from_time)} to {unix_to_epg_time(to_time)} started",
+        f"[{addon.getAddonInfo('name')}] Exporting EPG data from {unix_to_epg_time(from_time)} to {unix_to_epg_time(to_time)} started",
         xbmc.LOGINFO,
     )
     dialog = xbmcgui.Dialog()
     try:
-        path = get_path(is_epg=True)
+        path = get_path(addon, is_epg=True)
     except IOError as e:
         dialog.notification(
             addon.getAddonInfo("name"),
@@ -173,7 +174,7 @@ def export_epg(
             xbmcgui.NOTIFICATION_ERROR,
         )
         return
-    authenticate(_session)
+    authenticate(_session, addon)
     epg_in_description = addon.getSettingBool("epgidindesc")
     # channel data
     channels = media_list.get_channel_list(
@@ -270,9 +271,9 @@ def export_epg(
             if program_episode_name:
                 program["sub-title"] = {"@lang": "hu", "#text": program_episode_name}
             if program_enable_cdvr:
-                program[
-                    "@catchup-id"
-                ] = f"plugin://plugin.video.notyet/?action=catchup&id={program_id}&start={epg.get('startDate', 0)}&end={epg.get('endDate', 0)}"
+                program["@catchup-id"] = (
+                    f"plugin://plugin.video.notyet/?action=catchup&id={program_id}&start={epg.get('startDate', 0)}&end={epg.get('endDate', 0)}"
+                )
             program_data.append(program)
     xmltv_data = {
         "tv": {
@@ -301,6 +302,7 @@ class EPGUpdaterThread(threading.Thread):
 
     def __init__(
         self,
+        addon: xbmcaddon.Addon,
         _session: Session,
         from_time: int,
         to_time: int,
@@ -308,6 +310,7 @@ class EPGUpdaterThread(threading.Thread):
         last_updated: int,
     ):
         super().__init__()
+        self.addon = addon
         self._session = _session
         self.from_time = from_time
         self.to_time = to_time
@@ -320,6 +323,11 @@ class EPGUpdaterThread(threading.Thread):
     def now(self) -> int:
         """Returns the current time in unix format"""
         return int(time())
+
+    @property
+    def handle(self) -> str:
+        """Returns the addon handle"""
+        return f"[{self.addon.getAddonInfo('name')}]"
 
     @property
     def from_time_from_now(self) -> int:
@@ -341,17 +349,19 @@ class EPGUpdaterThread(threading.Thread):
         """
         while not self.killed.is_set():
             xbmc.log(
-                f"{handle} EPG update: next update in {min(self.frequency, self.frequency - (self.now - self.last_updated))} seconds",
+                f"{self.handle} EPG update: next update in {min(self.frequency, self.frequency - (self.now - self.last_updated))} seconds",
                 xbmc.LOGINFO,
             )
             self.killed.wait(
                 min(self.frequency, self.frequency - (self.now - self.last_updated))
             )
-            if not self.killed.is_set() and not self.failed_count > addon.getSettingInt(
-                "epgfetchtries"
+            if (
+                not self.killed.is_set()
+                and not self.failed_count > self.addon.getSettingInt("epgfetchtries")
             ):
                 try:
                     export_epg(
+                        self.addon,
                         self._session,
                         self.from_time_from_now,
                         self.to_time_from_now,
@@ -362,10 +372,16 @@ class EPGUpdaterThread(threading.Thread):
                 except Exception as e:
                     self.failed_count += 1
                     xbmc.log(
-                        f"{handle} EPG update failed: {e}",
+                        f"{self.handle} EPG update failed: {e}",
                         xbmc.LOGERROR,
                     )
                     self.killed.wait(5)
+            elif self.failed_count > self.addon.getSettingInt("epgfetchtries"):
+                xbmc.log(
+                    f"{self.handle} EPG update failed too many times, stopping",
+                    xbmc.LOGERROR,
+                )
+                self.killed.set()
 
     def stop(self):
         """
@@ -392,22 +408,29 @@ def days_to_seconds(days: int) -> int:
     return days * 24 * 60 * 60
 
 
-def main_service() -> EPGUpdaterThread:
+def main_service(addon: xbmcaddon.Addon) -> EPGUpdaterThread:
     """
     Main service loop.
     """
     if not addon.getSettingBool("autoupdateepg"):
         xbmc.log(
-            f"{handle} EPG autoupdate disabled, won't start", level=xbmc.LOGWARNING
+            f"[{addon.getAddonInfo('name')}] EPG autoupdate disabled, won't start",
+            level=xbmc.LOGWARNING,
         )
         return
     if not all([addon.getSetting("username"), addon.getSetting("password")]):
-        xbmc.log(f"{handle} No credentials set, won't start", level=xbmc.LOGWARNING)
+        xbmc.log(
+            f"[{addon.getAddonInfo('name')}] No credentials set, won't start",
+            level=xbmc.LOGWARNING,
+        )
         return
     _session = Session()
-    authenticate(_session)
+    authenticate(_session, addon)
     if not addon.getSetting("kstoken"):
-        xbmc.log(f"{handle} No KSToken set, won't start", level=xbmc.LOGWARNING)
+        xbmc.log(
+            f"[{addon.getAddonInfo('name')}] No KSToken set, won't start",
+            level=xbmc.LOGWARNING,
+        )
         return
     # get epg settings
     from_time = addon.getSetting("epgfrom")
@@ -419,15 +442,22 @@ def main_service() -> EPGUpdaterThread:
     else:
         last_update = int(last_update)
     if not all([from_time, to_time, frequency]):
-        xbmc.log(f"{handle} EPG settings not set, won't start", level=xbmc.LOGWARNING)
+        xbmc.log(
+            f"[{addon.getAddonInfo('name')}] EPG settings not set, won't start",
+            level=xbmc.LOGWARNING,
+        )
         return
     from_time = days_to_seconds(int(from_time))
     to_time = days_to_seconds(int(to_time))
     frequency = int_to_time(int(frequency))
     # start epg updater thread
-    epg_updater = EPGUpdaterThread(_session, from_time, to_time, frequency, last_update)
+    epg_updater = EPGUpdaterThread(
+        addon, _session, from_time, to_time, frequency, last_update
+    )
     epg_updater.start()
-    xbmc.log(f"{handle} Export EPG service started", level=xbmc.LOGINFO)
+    xbmc.log(
+        f"[{addon.getAddonInfo('name')}] Export EPG service started", level=xbmc.LOGINFO
+    )
     return epg_updater
 
 
